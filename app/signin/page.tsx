@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import './signin.css'
+import { useFormik } from 'formik'
+import * as Yup from 'yup';
 
 export default function Page() {
     const [message, setMessage] = useState('')
@@ -11,29 +13,62 @@ export default function Page() {
 
     const router = useRouter()
 
-    const handleLogin = (e: React.SyntheticEvent<HTMLFormElement>) => {
-        const fakeToken = '123456'
-        e.preventDefault()
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().email('Invalid email address').required('Required'),
+            password: Yup.string()
+                .min(8, 'Must be 8 characters at least')
+                .required('Required'),
+        }),
+        onSubmit: values => {
+            const fakeToken = '123456'
 
-        localStorage.setItem('token', fakeToken)
+            localStorage.setItem('token', fakeToken)
 
-        setMessage('Logged in successfully!')
-        setShowAlert(true)
+            setMessage('Logged in successfully!')
+            setShowAlert(true)
 
-        setTimeout(() => {
-            setShowAlert(false)
-            router.push('/home')
-        }, 3000)
-    }
+            setTimeout(() => {
+                setShowAlert(false)
+                router.push('/home')
+            }, 3000)
+            console.log(values)
+            formik.resetForm()
+        },
+    });
 
     return (
         <section>
             <div className='form-2 countainer'>
                 <h2>Sign In</h2>
 
-                <form onSubmit={handleLogin}>
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="Password" required />
+                <form onSubmit={formik.handleSubmit}>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder='Email'
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
+                    />
+                    {formik.touched.email && formik.errors.email ? (
+                        <div className='error'>{formik.errors.email}</div>
+                    ) : null}
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder='Password'
+                        onChange={formik.handleChange}
+                        value={formik.values.password}
+                    />
+                    {formik.touched.password && formik.errors.password ? (
+                        <div className='error'>{formik.errors.password}</div>
+                    ) : null}
 
                     <div>
                         <div>

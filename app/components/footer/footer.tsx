@@ -60,8 +60,8 @@ export default function Footer() {
                             </div>
                             <div className='links'>
                                 <h2>Proxy</h2>
-                                <Link href='/About'>About</Link>
-                                <Link href='#'>Shop</Link>
+                                <Link href='#'>About</Link>
+                                <Link href='/Shop'>Shop</Link>
                                 <Link href='#'>Product</Link>
                                 <Link href='#'>Track Order</Link>
                             </div>

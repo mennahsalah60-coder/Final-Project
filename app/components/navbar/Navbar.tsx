@@ -52,7 +52,7 @@ export default function Navbar() {
                                 <Link href="/signup"> Sign Up</Link>
                             </div>
                             <Link href='/home' className={pathname === "/" ? "active" : ""}>Home</Link>
-                            <Link href="/About" className={pathname === "/About" ? "active" : ""}>About</Link>
+                            <Link href="/Shop" className={pathname === "/Shop" ? "active" : ""}>Shop</Link>
                             <Link href='/pages' className={pathname === "/pages" ? "active" : ""}>Pages</Link>
                             <Link href='/blog' className={pathname === "/blog" ? "active" : ""}>Blog</Link>
                             <Link href='#'>About Us</Link>
@@ -85,7 +85,7 @@ export default function Navbar() {
                 <div className='navbar countainer'>
                     <div className='links'>
                         <Link href='/home' className={pathname === "/home" ? "active" : ""}>Home</Link>
-                        <Link href="/About" className={pathname === "/About" ? "active" : ""}>About</Link>
+                        <Link href="/Shop" className={pathname === "/Shop" ? "active" : ""}>Shop</Link>
                         <Link href='/pages' className={pathname === "/pages" ? "active" : ""}>Pages</Link>
                         <Link href='/blog' className={pathname === "/blog" ? "active" : ""}>Blog</Link>
                         <Link href='#'>About Us</Link>

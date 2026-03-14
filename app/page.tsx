@@ -93,13 +93,7 @@ export default function Hero() {
         price: number;
         sale: number;
     };
-
-    useEffect(() => {
-        fetch("http://192.168.1.4:3001/fruits")
-            .then(res => res.json())
-            .then(data => setFruits(data));
-    }, []);
-
+    
     type vegetable = {
         id: number;
         name: string;
@@ -109,9 +103,12 @@ export default function Hero() {
     };
 
     useEffect(() => {
-        fetch("http://192.168.1.4:3001/vegetables")
+        fetch("/api/products")
             .then(res => res.json())
-            .then(data => setVegetables(data));
+            .then(data => {
+                setFruits(data.fruits)
+                setVegetables(data.vegetables)
+            });
     }, []);
 
 
