@@ -1,0 +1,678 @@
+.hero {
+    margin-top: 50px;
+    width: 100%;
+
+    .bans {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .big-ban {
+        background-image: url('../../public/Bannar\ Big\ \(1\).png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        border-radius: 20px;
+
+        button {
+            background-color: aliceblue;
+            color: #00B207;
+            border-radius: 50px;
+            height: 6%;
+            cursor: pointer;
+            width: 15%;
+            margin: 45% 10% 15%;
+        }
+
+        button:hover {
+            background-color: #00B207;
+            color: aliceblue;
+        }
+    }
+
+    div {
+        display: flex;
+        gap: 20px;
+
+        .small-ban {
+            display: grid;
+            grid-template-columns: 1fr;
+
+            .one {
+                background-image: url(../../public/Bannar\ \(2\).png);
+                width: 100%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                border-radius: 20px;
+
+                a {
+                    color: #00B207;
+                    margin-top: 150px;
+                    margin-left: 30px;
+                }
+
+                a:hover {
+                    color: gray;
+                }
+            }
+
+            .two {
+                background-image: url(../../public/Bannar\ \(3\).png);
+                width: 100%;
+                background-size: cover;
+                border-radius: 20px;
+
+                a {
+                    color: #00B207;
+                    margin-top: 200px;
+                    margin-left: 180px;
+                }
+
+                a:hover {
+                    color: gray;
+                }
+            }
+        }
+    }
+}
+
+.free {
+    margin-top: 50px;
+    margin-bottom: 100px;
+    margin-inline: auto;
+
+    .all {
+        display: flex;
+        gap: 20px;
+
+        .one-serve {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+            padding: 20px;
+            background-color: aliceblue;
+            box-shadow: 0px 10px 20px rgb(215, 214, 214);
+
+            p {
+                color: gray;
+            }
+        }
+
+        .one-serve:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+
+        }
+    }
+
+}
+
+.categories {
+    .popular {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        a {
+            text-align: center;
+            align-items: center;
+            color: #00B207;
+
+            img {
+                width: 20px;
+                height: 15px;
+            }
+        }
+
+        a:hover {
+            gap: 20px;
+        }
+    }
+}
+
+.category {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    text-align: center;
+    margin-bottom: 100px;
+
+    div {
+        border: 1px solid rgb(219, 217, 217);
+        padding: 10px;
+        cursor: pointer;
+
+    }
+
+    div:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+}
+
+
+.popular-products {
+    margin-bottom: 100px;
+
+    .popular {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+
+        h3 {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        a {
+            text-align: center;
+            align-items: center;
+            color: #00B207;
+
+            img {
+                width: 20px;
+                height: 15px;
+            }
+        }
+
+        a:hover {
+            gap: 20px;
+        }
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+        .product {
+            border: 1px solid rgb(210, 204, 204);
+            padding: 10px;
+
+            h4 {
+                color: #4D4D4D;
+            }
+
+            .price {
+                display: flex;
+                gap: 5px;
+
+                .two {
+                    color: rgb(156, 155, 155);
+                    text-decoration: line-through;
+                }
+            }
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+    }
+}
+
+.banners {
+    .banner {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 100px;
+    }
+
+    .banner-4 {
+        background-image: url(../../public/Bannar\ \(4\).png);
+        background-size: cover;
+        min-height: 500px;
+        border-radius: 15px;
+        padding: 50px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        color: aliceblue;
+
+        h2 {
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .timer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            text-align: center;
+        }
+
+        .times {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .banner-4:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* shop-button */
+
+    .shop {
+        background-color: aliceblue;
+        color: #00B207;
+        display: flex;
+        padding: 10px;
+        gap: 10px;
+        width: 50%;
+        margin-top: 20px;
+        align-items: center;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    .shop:hover {
+        transform: scale(0.99);
+
+        button {
+            margin-right: 5px;
+        }
+    }
+
+    .shop1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .banner-5 {
+        background-image: url(../../public/Bannar\ \(5\).png);
+        background-size: cover;
+        border-radius: 15px;
+        padding: 50px;
+        min-height: 500px;
+        text-align: center;
+        color: aliceblue;
+
+        h2 {
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        span {
+            color: #FF8A00;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+    }
+
+    .banner-5:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .banner-6 {
+        background-image: url(../../public/Bannar\ \(6\).png);
+        background-size: cover;
+        border-radius: 15px;
+        min-height: 500px;
+        padding: 50px;
+        text-align: center;
+
+        h2 {
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        h3 {
+            padding: 10px 0px 10px 0px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .off {
+            color: rgb(243, 199, 5);
+            background-color: black;
+            padding: 10px;
+            font-weight: 700;
+        }
+    }
+
+    .banner-6:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+}
+
+.insta {
+    margin-bottom: 100px;
+
+    h2 {
+        align-items: center;
+        text-align: center;
+        font-weight: 700;
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    .insta-countainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+        div:hover {
+            opacity: .3;
+            cursor: pointer;
+            transition: 0.3s ease;
+
+            .insta-overlay {
+                opacity: 1;
+            }
+        }
+    }
+
+    .one {
+        background-image: url(../../public/Instagram\ Post.png);
+        min-height: 200px;
+        background-repeat: no-repeat;
+    }
+
+    .two {
+        background-image: url(../../public/Instagram\ Post\ \(6\).png);
+        min-height: 200px;
+        background-repeat: no-repeat;
+
+    }
+
+    .three {
+        background-image: url(../../public/Instagram\ Post\ \(2\).png);
+        min-height: 200px;
+        background-repeat: no-repeat;
+
+    }
+
+    .four {
+        background-image: url(../../public/Instagram\ Post\ \(8\).png);
+        min-height: 200px;
+        background-repeat: no-repeat;
+
+    }
+
+    .five {
+        background-image: url(../../public/Instagram\ Post\ \(9\).png);
+        min-height: 200px;
+        background-repeat: no-repeat;
+
+    }
+
+    .six {
+        background-image: url(../../public/Instagram\ Post\ \(10\).png);
+        min-height: 200px;
+        background-repeat: no-repeat;
+
+    }
+
+    .insta-overlay {
+        opacity: .1;
+        padding: 38%;
+    }
+}
+
+alert{
+    color: aliceblue;
+}
+
+/* media query */
+
+@media screen and (min-width: 320px) {
+    .hero {
+
+        .bans {
+            display: grid;
+            grid-template-columns: 1fr;
+
+            button {
+                margin-top: 150px;
+                width: 25%;
+                font-size: 10px;
+                height: 10%;
+            }
+
+            .small-ban .one a {
+                visibility: hidden;
+            }
+
+            .small-ban .two a {
+                visibility: hidden;
+            }
+        }
+
+        .none {
+            display: none;
+        }
+    }
+
+    .free {
+        .all {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .category {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        img {
+            margin-left: 40px;
+        }
+    }
+
+    .popular-products {
+        .popular {
+            h3 {
+                font-size: 22px;
+            }
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .banners{
+
+        .banner{
+            display: grid;
+            grid-template-columns: 1fr;
+
+            .shop{
+                width: 100%;
+            }
+
+            h2{
+                font-size: 30px;
+            }
+        }
+    }
+
+    .insta {
+        .insta-countainer{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+
+            .one,
+            .two,
+            .three,
+            .four,
+            .five,
+            .six{
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 568px) {
+    .hero {
+
+        .bans {
+            display: grid;
+
+            .big-ban {
+                display: none;
+            }
+
+            .small-ban {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+            }
+        }
+
+        .none {
+            display: block;
+            background-color: #00B207;
+            width: 60%;
+            padding: 5px;
+            border-radius: 30px;
+            color: aliceblue;
+            cursor: pointer;
+        }
+
+        .none:hover {
+            background-color: aliceblue;
+            color: #00B207;
+        }
+    }
+
+    .category {
+        grid-template-columns: 1fr 1fr 1fr;
+
+        img {
+            margin: 0;
+        }
+    }
+
+    .free {
+        .all {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .popular-products {
+        .products {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    .banners{
+
+        .banner{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .insta{
+
+        .insta-countainer{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .category {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+
+    .popular-products {
+        .products {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+    }
+
+    .banners{
+        .banner{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    .insta {
+        .insta-countainer{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+    }
+}
+
+
+@media screen and (min-width: 1440px) {
+    .category {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .free {
+        .all {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+    }
+
+    .hero {
+        .bans {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            .big-ban {
+                display: block;
+
+                button {
+                    margin-top: 45%;
+                    height: 25px;
+                }
+            }
+
+            .small-ban {
+                grid-template-columns: 1fr;
+
+
+            }
+        }
+
+        .none {
+            display: none;
+        }
+    }
+
+
+    .popular-products {
+        .products {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        }
+    }
+
+    .insta {
+
+        .insta-countainer{
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        }
+    }
+}
