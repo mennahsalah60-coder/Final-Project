@@ -21,6 +21,9 @@
 /build
 app/dist
 app/home/dist
+app/signin/dist
+app/signup/dist
+/.next/
 
 # misc
 .DS_Store
