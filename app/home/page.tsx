@@ -24,7 +24,6 @@ import remove from '../../public/Add To Cart (1).png'
 import { useCart } from '../components/addToCart/Cart';
 
 import './hero.css'
-// menna
 import { useEffect, useState } from 'react';
 
 export default function Hero() {
