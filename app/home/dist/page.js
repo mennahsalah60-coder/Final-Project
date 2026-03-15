@@ -32,6 +32,7 @@ var Add_To_Cart_png_1 = require("../../public/Add To Cart.png");
 var Add_To_Cart__1__png_1 = require("../../public/Add To Cart (1).png");
 var Cart_1 = require("../components/addToCart/Cart");
 require("./hero.css");
+// menna
 var react_1 = require("react");
 function Hero() {
     var _a = react_1.useState([]), fruits = _a[0], setFruits = _a[1];
