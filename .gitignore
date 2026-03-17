@@ -23,6 +23,7 @@ app/dist
 app/home/dist
 app/signin/dist
 app/signup/dist
+app/Shop/dist
 /.next/
 
 # misc

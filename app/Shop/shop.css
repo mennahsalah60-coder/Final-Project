@@ -1,0 +1,145 @@
+.discount {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    max-width: 1350px;
+    margin-inline: auto;
+
+    .count {
+        background-image: url(../../public/Discount\ Bannar.png);
+        background-size: cover;
+        max-width: 100%;
+        min-height: 300px;
+        color: aliceblue;
+        border-radius: 20px;
+        padding: 50px;
+
+        h2 {
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #00B207;
+            font-size: 20px;
+        }
+
+        p {
+            color: gray;
+            font-size: 20px;
+        }
+
+        .timer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            text-align: center;
+        }
+
+        .shop {
+            background-color: #00B207;
+            color: aliceblue;
+            display: flex;
+            padding: 10px;
+            gap: 10px;
+            width: 20%;
+            margin-top: 20px;
+            align-items: center;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: 30px;
+            cursor: pointer;
+
+        }
+
+        .shop:hover {
+            transform: scale(0.99);
+
+            button {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.filter {
+    margin-bottom: 50px;
+
+    span {
+        color: gray;
+    }
+
+    .things {
+        display: flex;
+        gap: 20px;
+
+        div {
+            border: 1px solid rgb(204, 201, 201);
+            outline: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+    }
+
+    .all-filter {
+        border-bottom: 1px solid rgb(204, 201, 201);
+        border-top: 1px solid rgb(204, 201, 201);
+        padding: 10px;
+        margin-top: 30px;
+    }
+
+    .filtered {
+        display: flex;
+        justify-content: space-between;
+
+        h3 {
+            color: gray;
+        }
+
+        .name {
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+
+        img {
+            height: 50%;
+            cursor: pointer;
+        }
+    }
+}
+
+.pro {
+    margin-bottom: 60px;
+
+
+    .products {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+        .product {
+            border: 1px solid rgb(210, 204, 204);
+            padding: 10px;
+
+            h4 {
+                color: #4D4D4D;
+            }
+
+            .price {
+                display: flex;
+                gap: 5px;
+
+                .two {
+                    color: rgb(156, 155, 155);
+                    text-decoration: line-through;
+                }
+            }
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+    }
+}

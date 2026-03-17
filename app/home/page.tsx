@@ -23,6 +23,7 @@ import addToCart from '../../public/Add To Cart.png'
 import remove from '../../public/Add To Cart (1).png'
 import { useCart } from '../components/addToCart/Cart';
 
+
 import './hero.css'
 import { useEffect, useState } from 'react';
 
@@ -30,7 +31,7 @@ export default function Hero() {
     const [fruits, setFruits] = useState<Fruit[]>([]);
     const [vegetables, setVegetables] = useState<vegetable[]>([]);
     const { cart, setCart } = useCart()
-
+    
     const products = [
         {
             img: img1,
@@ -101,8 +102,8 @@ export default function Hero() {
         fetch("/api/products")
             .then(res => res.json())
             .then(data => {
-                setFruits(data.fruits)
-                setVegetables(data.vegetables)
+                setFruits(data.fruits.splice(2))
+                setVegetables(data.vegetables.splice(8))
             });
     }, []);
     
@@ -152,17 +153,9 @@ export default function Hero() {
             <section className='hero'>
                 <div className="countainer bans">
                     <div className='big-ban'>
-                        <button className='ishere'>Shop Now</button>
+                        <button className='ishere' ><Link href='/Shop'>Shop now</Link></button>
                     </div>
-                    <div className='small-ban'>
-                        <div className='one'>
-                            <Link href="#">Shop Now</Link>
-                        </div>
-                        <div className='two'>
-                            <Link href="#">Shop Now</Link>
-                        </div>
-                        {/* <button className='none'> Shop Now</button> */}
-                    </div>
+                    
                 </div>
             </section>
 
@@ -345,7 +338,7 @@ export default function Hero() {
                             </div>
                             <div className='shop1'>
                                 <div className='shop'>
-                                    <button>Shop Now</button>
+                                    <button><Link href='/Shop'>Shop now</Link></button>
                                     <Image src={view} alt='' />
                                 </div>
                             </div>
@@ -358,7 +351,7 @@ export default function Hero() {
                             <h3>Started at <span>$79.99</span></h3>
                             <div className='shop1'>
                                 <div className='shop'>
-                                    <button>Shop Now</button>
+                                    <button><Link href='/Shop'>Shop now</Link></button>
                                     <Image src={view} alt='' />
                                 </div>
                             </div>
@@ -376,7 +369,7 @@ export default function Hero() {
                             </div>
                             <div className='shop1'>
                                 <div className='shop'>
-                                    <button>Shop Now</button>
+                                    <button><Link href='/Shop'>Shop now</Link></button>
                                     <Image src={view} alt='' />
                                 </div>
                             </div>

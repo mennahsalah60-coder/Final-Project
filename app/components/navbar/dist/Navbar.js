@@ -14,11 +14,12 @@ require("./navbar.css");
 var react_1 = require("react");
 var navigation_1 = require("next/navigation");
 var Cart_1 = require("../addToCart/Cart");
+// import { useSearch } from './searchContext'
 function Navbar() {
     var _a = react_1.useState(false), isAdd = _a[0], setIsAdd = _a[1];
     var pathname = navigation_1.usePathname();
     var cart = Cart_1.useCart().cart;
-    console.log(cart);
+    // const { search, setSearch, loading } = useSearch()
     return (React.createElement(React.Fragment, null,
         React.createElement("section", { className: 'location-sec' },
             React.createElement("div", { className: 'countainer location items-center' },
@@ -51,7 +52,10 @@ function Navbar() {
                         React.createElement("p", null, "Eng"),
                         React.createElement("p", null, "USD"))),
                 React.createElement("div", { className: 'search' },
-                    React.createElement("input", { type: "text", placeholder: 'Search' }),
+                    React.createElement("input", { type: "text", 
+                        // value={search}
+                        // onChange={(e) => setSearch(e.target.value)}
+                        placeholder: 'Search' }),
                     React.createElement("div", null,
                         React.createElement("button", { className: '' }, "Search"))),
                 React.createElement("div", { className: 'fav' },

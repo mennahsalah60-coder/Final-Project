@@ -12,12 +12,13 @@ import './navbar.css'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation';
 import { useCart } from '../addToCart/Cart';
+// import { useSearch } from './searchContext'
 
 export default function Navbar() {
     const [isAdd, setIsAdd] = useState(false)
     const pathname = usePathname()
     const { cart } = useCart()
-    console.log(cart)
+    // const { search, setSearch, loading } = useSearch()
 
     return (
         <>
@@ -62,7 +63,16 @@ export default function Navbar() {
                         </ul>
                     </div>
                     <div className='search'>
-                        <input type="text" placeholder='Search' />
+                        <input type="text"
+                            // value={search}
+                            // onChange={(e) => setSearch(e.target.value)}
+                            placeholder='Search' />
+                        {/* {loading && <p>Loading...</p>} */}
+                        {/* <ul>
+                            {result.map((item) => (
+                                <li key={item.id}>{item.name}</li>
+                            ))}
+                        </ul> */}
                         <div>
                             <button className=''>Search</button>
                         </div>

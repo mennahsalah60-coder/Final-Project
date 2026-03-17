@@ -26,11 +26,13 @@ import '../app/home/hero.css'
 import { useEffect, useState } from 'react';
 
 import { useRouter } from "next/navigation";
+// import { useSearch } from './components/navbar/searchContext';
 
 export default function Hero() {
     const [fruits, setFruits] = useState<Fruit[]>([]);
     const [vegetables, setVegetables] = useState<vegetable[]>([]);
     const [cart, setCart] = useState<Product[]>([])
+    // const {result, loading} = useSearch()
 
     type Product = {
         id: number;
@@ -93,7 +95,7 @@ export default function Hero() {
         price: number;
         sale: number;
     };
-    
+
     type vegetable = {
         id: number;
         name: string;
@@ -106,8 +108,8 @@ export default function Hero() {
         fetch("/api/products")
             .then(res => res.json())
             .then(data => {
-                setFruits(data.fruits)
-                setVegetables(data.vegetables)
+                setFruits(data.fruits.splice(2))
+                setVegetables(data.vegetables.splice(8))
             });
     }, []);
 
@@ -173,6 +175,8 @@ export default function Hero() {
 
         alert("Product added to cart");
     };
+
+    // if (loading) return <p>loading...</p>;
 
     return (
         <>
@@ -258,6 +262,13 @@ export default function Hero() {
                             <Image src={view} alt='' />
                         </Link>
                     </div>
+                    {/* <ul>
+                        {Array.isArray(result) && result.map((item) => (
+                            <li key={item.id}>
+                                {item.name}
+                            </li>
+                        ))}
+                    </ul> */}
                     <div className='products'>
                         {fruits.map((item) => {
                             return (
