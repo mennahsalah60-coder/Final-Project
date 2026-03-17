@@ -155,7 +155,15 @@ export default function Hero() {
                     <div className='big-ban'>
                         <button className='ishere' ><Link href='/Shop'>Shop now</Link></button>
                     </div>
-                    
+                    <div className='small-ban'>
+                        <div className='one'>
+                            <Link href="#">Shop Now</Link>
+                        </div>
+                        <div className='two'>
+                            <Link href="#">Shop Now</Link>
+                        </div>
+                        {/* <button className='none'> Shop Now</button> */}
+                    </div>
                 </div>
             </section>
 

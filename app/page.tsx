@@ -183,7 +183,7 @@ export default function Hero() {
             <section className='hero'>
                 <div className="countainer bans">
                     <div className='big-ban'>
-                        <button className='ishere'>Shop Now</button>
+                        <button className='ishere'><Link href='/Shop'>Shop now</Link></button>
                     </div>
                     <div className='small-ban'>
                         <div className='one'>
@@ -384,7 +384,7 @@ export default function Hero() {
                             </div>
                             <div className='shop1'>
                                 <div className='shop'>
-                                    <button>Shop Now</button>
+                                    <button><Link href='/Shop'>Shop now</Link></button>
                                     <Image src={view} alt='' />
                                 </div>
                             </div>
@@ -397,7 +397,7 @@ export default function Hero() {
                             <h3>Started at <span>$79.99</span></h3>
                             <div className='shop1'>
                                 <div className='shop'>
-                                    <button>Shop Now</button>
+                                    <button><Link href='/Shop'>Shop now</Link></button>
                                     <Image src={view} alt='' />
                                 </div>
                             </div>
@@ -415,7 +415,7 @@ export default function Hero() {
                             </div>
                             <div className='shop1'>
                                 <div className='shop'>
-                                    <button>Shop Now</button>
+                                    <button><Link href='/Shop'>Shop now</Link></button>
                                     <Image src={view} alt='' />
                                 </div>
                             </div>
