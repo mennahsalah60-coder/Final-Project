@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -19,12 +17,11 @@
 
 # production
 /build
-app/dist
-app/home/dist
-app/signin/dist
-app/signup/dist
-app/Shop/dist
-/.next/
+app/dist/
+app/home/dist/
+app/Shop/dist/
+app/signin/dist/
+app/signup/dist/
 
 # misc
 .DS_Store
@@ -36,7 +33,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
 
 # vercel
