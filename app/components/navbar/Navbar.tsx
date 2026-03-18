@@ -54,10 +54,9 @@ export default function Navbar() {
                             </div>
                             <Link href='/home' className={pathname === "/" ? "active" : ""}>Home</Link>
                             <Link href="/Shop" className={pathname === "/Shop" ? "active" : ""}>Shop</Link>
-                            <Link href='/pages' className={pathname === "/pages" ? "active" : ""}>Pages</Link>
                             <Link href='/blog' className={pathname === "/blog" ? "active" : ""}>Blog</Link>
-                            <Link href='#'>About Us</Link>
-                            <Link href='#'>Contact Us</Link>
+                            <Link href='#' className={pathname === "/about" ? "active" : ""}>About Us</Link>
+                            <Link href='/contact' className={pathname === "/contact" ? "active" : ""}>Contact Us</Link>
                             <p>Eng</p>
                             <p>USD</p>
                         </ul>
@@ -96,10 +95,9 @@ export default function Navbar() {
                     <div className='links'>
                         <Link href='/home' className={pathname === "/home" ? "active" : ""}>Home</Link>
                         <Link href="/Shop" className={pathname === "/Shop" ? "active" : ""}>Shop</Link>
-                        <Link href='/pages' className={pathname === "/pages" ? "active" : ""}>Pages</Link>
                         <Link href='/blog' className={pathname === "/blog" ? "active" : ""}>Blog</Link>
                         <Link href='#'>About Us</Link>
-                        <Link href='#'>Contact Us</Link>
+                        <Link href='/contact' className={pathname === "/contact" ? "active" : ""}>Contact Us</Link>
                     </div>
                     <div>
                         <Image src={call} alt='' />

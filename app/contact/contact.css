@@ -1,0 +1,174 @@
+.contactus {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.contact {
+    background-image: url(../../public/Discount\ Bannar.png);
+    background-size: cover;
+    padding: 3%;
+}
+
+.map{
+    width: 100%;
+}
+.shop {
+    background-color: #00B207;
+    color: aliceblue;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    width: 30%;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 30px;
+    cursor: pointer;
+
+}
+
+.shop:hover {
+    transform: scale(0.99);
+
+    button {
+        margin-right: 5px;
+    }
+}
+
+.call {
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    .one {
+        display: grid;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        box-shadow: 1px 1px 20px rgb(189, 185, 185);
+
+        div {
+            border-bottom: 1px solid rgb(211, 207, 207);
+            padding: 15px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+
+            p {
+                width: 50%;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    }
+
+    .two {
+        box-shadow: 1px 1px 20px rgb(189, 185, 185);
+        padding: 20px;
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        p {
+            color: gray;
+            max-width: 55%;
+            margin-bottom: 10px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+
+            div {
+                display: flex;
+                gap: 10px;
+
+                input {
+                    width: 100%;
+                }
+            }
+        }
+
+        input {
+            border: 1px solid rgb(186, 181, 181);
+            padding: 10px;
+        }
+
+        textarea {
+            min-height: 100px;
+            border: 1px solid rgb(186, 181, 181);
+            padding: 10px;
+        }
+
+    }
+}
+
+@media screen and (min-width: 320px) {
+    .contact{
+        padding: 20px;
+        .shop{
+            margin-top: 30px;
+            width: 100%;
+            padding: 5px;
+        }
+    }
+    .call {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        .two {
+            form {
+                div {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                }
+
+                .shop{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .contact{
+        padding: 30px;
+        .shop{
+            width: 30%;
+        }
+    }
+    .call{
+        display: flex;
+
+        .one{
+            width: 70%;
+            padding: 10px;
+        }
+
+        .two{
+            form{
+                div{
+                    display: flex;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width: 1024px) {
+    .contact{
+        padding: 60px;
+    }
+
+    .call{
+        .one{
+            width: 30%;
+        }
+    }
+}

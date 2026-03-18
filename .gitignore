@@ -22,6 +22,7 @@ app/home/dist/
 app/Shop/dist/
 app/signin/dist/
 app/signup/dist/
+app/contact/dist/
 
 # misc
 .DS_Store

@@ -53,8 +53,8 @@ export default function Footer() {
                             </div>
                             <div className='links'>
                                 <h2>Helps</h2>
-                                <p>Contact</p>
-                                <p>Faqs</p>
+                                <Link href='/contact'>Contact</Link>
+                                <Link href='/faqs'>FAQs</Link>
                                 <p>Terms & Condition</p>
                                 <p>Privacy Policy</p>
                             </div>
