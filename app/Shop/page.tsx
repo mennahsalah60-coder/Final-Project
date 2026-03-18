@@ -7,13 +7,20 @@ import Image from 'next/image';
 import { useCart } from '../components/addToCart/Cart';
 import addToCart from '../../public/Add To Cart.png'
 import remove from '../../public/Add To Cart (1).png'
+import rate from '../../public/Rating.png'
+import brand from '../../public/Group 19.png'
+import removeFromFav from '../../public/remove.svg'
+import addToFav from '../../public/add.svg'
 
 export default function About() {
     const [category, setCategory] = useState('');
     const [price, setPrice] = useState('')
-    const [fruits, setFruits] = useState<Fruit[]>([]);
-    const [vegetables, setVegetables] = useState<vegetable[]>([]);
+    const [fruits, setFruits] = useState<Product[]>([]);
+    const [vegetables, setVegetables] = useState<Product[]>([]);
     const { cart, setCart } = useCart()
+    const [fav, setFav] = useState<(Product)[]>([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
     // TIMER IS HERE
     const [time, setTime] = useState({
@@ -56,22 +63,17 @@ export default function About() {
         return () => clearInterval(interval);
     }, [])
 
-    type Fruit = {
+    type Product = {
         id: number;
-        image: string;
-        name: string;
-        price: number;
-        sale: number;
-        category: string;
-    };
 
-    type vegetable = {
-        id: number;
         name: string;
         price: number;
         sale: number;
-        image: string;
         category: string;
+
+
+        image: string;
+
     };
 
 
@@ -138,11 +140,11 @@ export default function About() {
                                     }
                                 }}
                             > Shop Now </button>
-                        <Image src={view} alt="" />
+                            <Image src={view} alt="" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section >
+            </section >
 
             <section className='filter'>
                 <div className='countainer things'>
@@ -170,7 +172,7 @@ export default function About() {
 
                 <section className='all-filter'>
                     <div className='filtered countainer'>
-                        <div className='flex gap-10'>
+                        <div className='flex gap-10 done'>
                             <h3>Active Filters: </h3>
                             {category && (
                                 <div className='flex gap-5 name' onClick={() => setCategory('')}>
@@ -219,8 +221,98 @@ export default function About() {
                                         </button>
                                     </div>
                                 </div>
+                                <div>
+                                    <Image src={rate} width={80} alt='' />
+                                </div>
+                                <div className='flex gap-5'>
+                                    <button className='quick' onClick={() => {
+                                        setSelectedProduct(item);
+                                        setShowModal(true);
+                                    }}>
+                                        quick view
+                                    </button>
+                                </div>
                             </div>
                         ))}
+                        {showModal && selectedProduct && (
+                            <div className="overlay" onClick={() => setShowModal(false)}>
+
+                                <div className="modal countainer" onClick={(e) => e.stopPropagation()}>
+
+                                    <span className="close" onClick={() => setShowModal(false)}>X</span>
+
+                                    <div className="content countainer">
+
+                                        <div className="images">
+                                            <Image
+                                                src={selectedProduct.image}
+                                                className="main-img"
+                                                alt=''
+                                                width={300}
+                                                height={300}
+                                            />
+                                        </div>
+
+                                        <div className="info">
+                                            <h2>{selectedProduct.name}</h2>
+                                            <Image src={rate} alt='' />
+                                            <div className='flex gap-10 top'>
+                                                <div className='flex gap-2 align-items-center text-center'>
+                                                    <p className='sale'>{selectedProduct.price * selectedProduct.sale}</p>
+                                                    <p className='before'>{selectedProduct.price}</p>
+                                                </div>
+                                                <div>
+                                                    <p className='pre'>{selectedProduct.sale * 100}%</p>
+                                                </div>
+                                            </div>
+
+                                            <div className='share'>
+                                                <div className='brand flex'>
+                                                    <h5>Brand: </h5>
+                                                    <Image src={brand} alt='' />
+                                                </div>
+                                                <div>
+                                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum eligendi amet id reiciendis? Quo optio voluptatum adipisci soluta quia quaerat facere odio, officia velit ducimus. Odit mollitia repellendus ullam minima?</p>
+                                                </div>
+                                            </div>
+                                            <div className='btns'>
+                                                <button
+                                                    className={`cart ${cart.some(p => p.id === selectedProduct.id) ? 'added' : ''}`}
+                                                    onClick={() => {
+                                                        if (cart.some(p => p.id === selectedProduct.id)) {
+                                                            setCart(prev => prev.filter(p => p.id !== selectedProduct.id));
+                                                        } else {
+                                                            setCart(prev => [...prev, selectedProduct]);
+                                                        }
+                                                    }}
+                                                >
+                                                    <h2>{cart.some(p => p.id === selectedProduct.id) ? "Remve From Cart" : "Add To Cart"}</h2>
+                                                </button>
+                                                <button className='addToFav' onClick={() => {
+                                                    if (fav.some(p => p.id === selectedProduct.id)) {
+                                                        setFav(prev => prev.filter(p => p.id !== selectedProduct.id));
+                                                    } else {
+                                                        setFav(prev => [...prev, selectedProduct]);
+                                                    }
+                                                }}>
+                                                    <Image
+                                                        src={fav.some(p => p.id === selectedProduct.id) ? addToFav : removeFromFav}
+                                                        alt="fav"
+                                                        width={30}
+                                                        height={30}
+                                                    />
+                                                </button>
+                                            </div>
+                                            <div className='cat flex gap-2'>
+                                                <h3>Category: </h3>
+                                                <p>{selectedProduct.category}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>
