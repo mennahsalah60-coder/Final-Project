@@ -65,15 +65,12 @@ export default function About() {
 
     type Product = {
         id: number;
-
         name: string;
         price: number;
         sale: number;
-        category: string;
-
-
         image: string;
-
+        category: string;
+        
     };
 
 

@@ -102,8 +102,8 @@ export default function Hero() {
         fetch("/api/products")
             .then(res => res.json())
             .then(data => {
-                setFruits(data.fruits.splice(2))
-                setVegetables(data.vegetables.splice(8))
+                setFruits(data.fruits.slice(0, 2));
+                setVegetables(data.vegetables.slice(0, 8));
             });
     }, []);
     
