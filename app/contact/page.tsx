@@ -55,7 +55,7 @@ export default function page() {
                     </div>
                 </div>
                 <div>
-                    <Image className='map' src={mapImg} alt='' />
+                    <Image className='mapImg' src={mapImg} alt='' />
                 </div>
             </section>
         </>
