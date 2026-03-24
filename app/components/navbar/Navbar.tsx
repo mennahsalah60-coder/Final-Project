@@ -55,7 +55,7 @@ export default function Navbar() {
                             <Link href='/home' className={pathname === "/" ? "active" : ""}>Home</Link>
                             <Link href="/Shop" className={pathname === "/Shop" ? "active" : ""}>Shop</Link>
                             <Link href='/blog' className={pathname === "/blog" ? "active" : ""}>Blog</Link>
-                            <Link href='#' className={pathname === "/about" ? "active" : ""}>About Us</Link>
+                            <Link href='/about' className={pathname === "/about" ? "active" : ""}>About Us</Link>
                             <Link href='/contact' className={pathname === "/contact" ? "active" : ""}>Contact Us</Link>
                             <p>Eng</p>
                             <p>USD</p>
@@ -96,7 +96,7 @@ export default function Navbar() {
                         <Link href='/home' className={pathname === "/home" ? "active" : ""}>Home</Link>
                         <Link href="/Shop" className={pathname === "/Shop" ? "active" : ""}>Shop</Link>
                         <Link href='/blog' className={pathname === "/blog" ? "active" : ""}>Blog</Link>
-                        <Link href='#'>About Us</Link>
+                        <Link href='/about' className={pathname === "/about" ? "active" : ""}>About Us</Link>
                         <Link href='/contact' className={pathname === "/contact" ? "active" : ""}>Contact Us</Link>
                     </div>
                     <div>

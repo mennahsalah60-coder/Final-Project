@@ -82,6 +82,10 @@
             outline: none;
             padding: 5px;
             cursor: pointer;
+
+            select {
+                width: 100%;
+            }
         }
     }
 
@@ -169,10 +173,10 @@
 .before {
     color: #00B207;
     font-size: 25px;
-}
+    p {
+        font-size: 17px;
+    }
 
-p {
-    font-size: 17px;
 }
 
 .modal {
@@ -437,8 +441,8 @@ button {
         }
     }
 
-    .images{
-        img{
+    .images {
+        img {
             width: 70%;
         }
     }

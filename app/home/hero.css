@@ -433,7 +433,6 @@ alert{
 
 @media screen and (min-width: 320px) {
     .hero {
-
         .bans {
             display: grid;
             grid-template-columns: 1fr;

@@ -145,7 +145,8 @@ nav {
 
     .logo {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 0fr;
+        /* display: flex; */
 
         .fav {
             display: none;
@@ -153,7 +154,7 @@ nav {
 
         .burger {
             display: block !important;
-            margin-left: -30px;
+            margin-left: -15px;
             cursor: pointer;
         }
 
@@ -176,7 +177,7 @@ nav {
         display: none;
         position: absolute;
         top: 70px;
-        right: 45%;
+        right: 20%;
         flex-direction: column;
         background: #fff;
         padding: 15px;

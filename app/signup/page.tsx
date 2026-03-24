@@ -85,7 +85,7 @@ export default function Page() {
                         <div className='error'>{formik.errors.confirmPassword}</div>
                     ) : null}
 
-                    <div>
+                    <div className='remember'>
                         <input type="radio" name='remember' required />
                         <p>Accept all terms & Conditions</p>
                     </div>

@@ -46,7 +46,7 @@ function Navbar() {
                         React.createElement(link_1["default"], { href: '/home', className: pathname === "/" ? "active" : "" }, "Home"),
                         React.createElement(link_1["default"], { href: "/Shop", className: pathname === "/Shop" ? "active" : "" }, "Shop"),
                         React.createElement(link_1["default"], { href: '/blog', className: pathname === "/blog" ? "active" : "" }, "Blog"),
-                        React.createElement(link_1["default"], { href: '#', className: pathname === "/about" ? "active" : "" }, "About Us"),
+                        React.createElement(link_1["default"], { href: '/about', className: pathname === "/about" ? "active" : "" }, "About Us"),
                         React.createElement(link_1["default"], { href: '/contact', className: pathname === "/contact" ? "active" : "" }, "Contact Us"),
                         React.createElement("p", null, "Eng"),
                         React.createElement("p", null, "USD"))),
@@ -72,7 +72,7 @@ function Navbar() {
                     React.createElement(link_1["default"], { href: '/home', className: pathname === "/home" ? "active" : "" }, "Home"),
                     React.createElement(link_1["default"], { href: "/Shop", className: pathname === "/Shop" ? "active" : "" }, "Shop"),
                     React.createElement(link_1["default"], { href: '/blog', className: pathname === "/blog" ? "active" : "" }, "Blog"),
-                    React.createElement(link_1["default"], { href: '#' }, "About Us"),
+                    React.createElement(link_1["default"], { href: '/about', className: pathname === "/about" ? "active" : "" }, "About Us"),
                     React.createElement(link_1["default"], { href: '/contact', className: pathname === "/contact" ? "active" : "" }, "Contact Us")),
                 React.createElement("div", null,
                     React.createElement(image_1["default"], { src: Call_Now_png_1["default"], alt: '' }))))));
