@@ -63,7 +63,7 @@
 
         .two {
             border: 1px solid rgb(188, 185, 185);
-            padding: 20px 80px;
+            padding: 20px 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -265,17 +265,22 @@
 
     .profile {
 
-
         .left {
             margin: 0;
             width: 100%;
+
+            .one{
+                max-width: 100%;
+            }
+
+            .two{
+                max-width: 100%;
+            }
         }
 
         .details {
             display: flex;
             flex-direction: column;
-            margin-inline: auto;
-            margin-left: 25px;
 
         }
 
