@@ -12,14 +12,25 @@ import './navbar.css'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation';
 import { useCart } from '../addToCart/Cart';
-// import { useSearch } from './searchContext'
+import { useAuth } from './AuthContext'
+import { useRouter } from 'next/navigation'
 
 export default function Navbar() {
     const [isAdd, setIsAdd] = useState(false)
     const pathname = usePathname()
     const { cart } = useCart()
-    // const { search, setSearch, loading } = useSearch()
+    const { user, logout } = useAuth()
+    const router = useRouter()
+    const firstName =
+        user?.firstName
+            ? user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)
+            : "";
 
+
+    const handleLogout = () => {
+        logout();
+        router.push("/home");
+    };
     return (
         <>
             <section className='location-sec'>
@@ -31,9 +42,27 @@ export default function Navbar() {
                     <div className='det'>
                         <p>Eng</p>
                         <p>USD</p>
-                        <Link href="signin">Sign in</Link>
-                        <p>/</p>
-                        <Link href='/signup'>Sign up</Link>
+
+                        {!user ? (
+                            <>
+                                <Link href="/signin">Sign in</Link>
+                                <p>/</p>
+                                <Link href="/signup">Sign up</Link>
+                            </>
+                        ) : (
+                            <>
+                                <Link className='account' href="/profile">Your Account {firstName}</Link>
+                                <button
+                                    onClick={() => {
+                                        logout()
+                                        handleLogout()
+                                        alert("You have been logged out successfully")
+                                    }}
+                                >
+                                    Logout
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
             </section>

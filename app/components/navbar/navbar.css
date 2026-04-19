@@ -143,6 +143,13 @@ nav {
 
     }
 
+    .account{
+        color: #00B207;
+    }
+
+    .account:hover{
+        text-decoration: underline;
+    }
     .logo {
         display: grid;
         grid-template-columns: 1fr 0fr;

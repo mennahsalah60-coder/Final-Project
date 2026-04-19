@@ -1,0 +1,451 @@
+'use client'
+
+import './profile.css'
+import Image from 'next/image'
+import dash1 from '../../public/dashboard 2.svg'
+import setting from '../../public/dashboard 2 (6).svg'
+import cart from '../../public/dashboard 2 (5).svg'
+import wish from '../../public/dashboard 2 (4).svg'
+import out from '../../public/dashboard 2 (3).svg'
+import history from '../../public/dashboard 2 (4).svg'
+import photo from '../../public/profile-round-1342-svgrepo-com.svg'
+import Link from 'next/link'
+import { useState } from 'react'
+import { useAuth } from '../components/navbar/AuthContext'
+import { useRouter } from 'next/navigation'
+
+type FormDataType = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    password: string;
+    current: string;
+    confirm: string;
+    Company: string;
+    Address: string;
+};
+
+
+export default function Page() {
+    const [active, setActive] = useState<string>('dashboard')
+    const { logout, user, updateUser } = useAuth()
+    const router = useRouter();
+
+    const [formData, setFormData] = useState<FormDataType>({
+        firstName: user?.firstName || '',
+        lastName: user?.lastName || '',
+        email: user?.email || '',
+        phone: user?.phone || '',
+        password: user?.password || '',
+        current: user?.current || '',
+        confirm: user?.confirm || '',
+        Company: user?.Company || '',
+        Address: user?.Address || '',
+    })
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleLogout = () => {
+        logout();
+        router.push("/home");
+    };
+
+    const handleSave = () => {
+        updateUser(formData)
+        alert("Saved successfully ✅")
+    }
+
+    return (
+        <>
+            <section className='profile'>
+                <div className='allProfile countainer flex justify-around'>
+                    <div className='right'>
+                        <h1>Navigation</h1>
+                        <div className={`navegates flex gap-1 ${active === 'dashboard' ? 'active' : ''}`} onClick={() => setActive('dashboard')}>
+                            <Image src={dash1} alt='' />
+                            <h2>Dashboard</h2>
+                        </div>
+                        <div className={`navegates flex gap-1 ${active === 'history' ? 'active' : ''}`} onClick={() => setActive('history')}>
+                            <Image src={history} alt='' />
+                            <h2>Order History</h2>
+                        </div>
+
+                        <div className={`navegates flex gap-1 ${active === 'wishlist' ? 'active' : ''}`} onClick={() => setActive('wishlist')}>
+                            <Image src={wish} alt='' />
+                            <h2>Wishlist</h2>
+                        </div>
+
+                        <div className={`navegates flex gap-1 ${active === 'cart' ? 'active' : ''}`} onClick={() => setActive('cart')}>
+                            <Image src={cart} alt='' />
+                            <h2>Shopping Cart</h2>
+                        </div>
+
+                        <div className={`navegates flex gap-1 ${active === 'settings' ? 'active' : ''}`} onClick={() => setActive('settings')}>
+                            <Image src={setting} alt='' />
+                            <h2>Settings</h2>
+                        </div>
+
+                        <div className='navegates flex gap-1'>
+                            <Image src={out} alt='' />
+                            <button
+                                onClick={() => {
+                                    logout()
+                                    handleLogout()
+                                    alert("You have been logged out successfully")
+                                }}
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div className='left'>
+                        <div className='here'>
+                            {active === 'dashboard' &&
+                                <>
+                                    <div className='details flex gap-10'>
+                                        <div className='one'>
+                                            <div className='img'>
+                                                <Image src={photo} alt='' />
+                                            </div>
+                                            <h2> {user?.firstName} {user?.lastName}</h2>
+                                            <p>Customer</p>
+
+                                            <button onClick={() => setActive('settings')}>
+                                                <Link href=''>Edit Profile</Link>
+                                            </button>
+                                        </div>
+                                        <div className='two'>
+                                            <p>Billing Address</p>
+                                            <h2>{user?.firstName} {user?.lastName}</h2>
+                                            <p>
+                                                {user?.Address}
+                                            </p>
+                                            <h3>{user?.email}</h3>
+                                            <h3>{user?.phone}</h3>
+                                            <button onClick={() => setActive('settings')}>
+                                                <Link href=''>Edit Profile</Link>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className='hereTwo'>
+                                        <h1>Recet Order History</h1>
+                                        <div className='id flex justify-between'>
+                                            <p>Order ID</p>
+                                            <p>Date</p>
+                                            <p>Total</p>
+                                            <p>Status</p>
+                                            <p></p>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#738</p>
+                                            <p>8 Sep, 2020</p>
+                                            <p>$25.00 (1 Product)</p>
+                                            <p>on the way</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#703</p>
+                                            <p>22 Oct, 2020</p>
+                                            <p>$250.00 (4 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#130</p>
+                                            <p>1 Feb, 2020</p>
+                                            <p>$35.00 (1 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#561</p>
+                                            <p>22 Oct, 2020</p>
+                                            <p>$250.00 (4 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#536</p>
+                                            <p>21 Sep, 2020</p>
+                                            <p>$578.00 (13 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+                                    </div>
+                                </>
+                            }
+
+                            {active === 'history' &&
+                                <>
+                                    <div className='history'>
+                                        <h1>Order History</h1>
+                                        <div className='id flex justify-between'>
+                                            <p>Order ID</p>
+                                            <p>Date</p>
+                                            <p>Total</p>
+                                            <p>Status</p>
+                                            <p></p>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#738</p>
+                                            <p>8 Sep, 2020</p>
+                                            <p>$25.00 (1 Product)</p>
+                                            <p>on the way</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#703</p>
+                                            <p>22 Oct, 2020</p>
+                                            <p>$250.00 (4 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#130</p>
+                                            <p>1 Feb, 2020</p>
+                                            <p>$35.00 (1 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#561</p>
+                                            <p>22 Oct, 2020</p>
+                                            <p>$250.00 (4 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#536</p>
+                                            <p>21 Sep, 2020</p>
+                                            <p>$578.00 (13 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#130</p>
+                                            <p>1 Feb, 2020</p>
+                                            <p>$35.00 (1 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#561</p>
+                                            <p>22 Oct, 2020</p>
+                                            <p>$250.00 (4 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+
+                                        <div className='secId flex justify-between'>
+                                            <p>#536</p>
+                                            <p>21 Sep, 2020</p>
+                                            <p>$578.00 (13 Products)</p>
+                                            <p>Completed</p>
+                                            <Link href=''>View Details</Link>
+                                        </div>
+                                    </div>
+                                </>
+                            }
+
+                            {active === 'wishlist' && <h2>Wishlist Content</h2>}
+
+                            {active === 'cart' && <h2>Shopping Cart Content</h2>}
+
+                            {active === 'settings' &&
+                                <>
+                                    <div className='settings'>
+                                        <h1>Account Settings</h1>
+                                        <div className='first flex justify-between'>
+                                            <div className='inputsFi'>
+                                                <form>
+                                                    <div>
+                                                        <label>First Name</label>
+                                                        <input
+                                                            name="firstName"
+                                                            value={formData.firstName}
+                                                            onChange={handleChange}
+                                                            placeholder="First Name"
+                                                        />
+                                                    </div>
+
+                                                    <div>
+                                                        <label>last Name</label>
+                                                        <input
+                                                            name="lastName"
+                                                            value={formData.lastName}
+                                                            onChange={handleChange}
+                                                            placeholder="Last Name"
+                                                        />
+                                                    </div>
+
+                                                    <div>
+                                                        <label>Email</label>
+                                                        <input
+                                                            name="email"
+                                                            value={formData.email}
+                                                            onChange={handleChange}
+                                                            placeholder="Email"
+                                                        />
+                                                    </div>
+
+                                                    <div>
+                                                        <label>Phone Number</label>
+                                                        <input
+                                                            name="phone"
+                                                            value={formData.phone}
+                                                            onChange={handleChange}
+                                                            placeholder="Phone"
+                                                        />
+                                                    </div>
+                                                    <button className='shop' type="button" onClick={handleSave}>
+                                                        Save Changes
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <div className='account'>
+                                                <div className='img'>
+                                                    <Image src={photo} alt='' />
+                                                </div>
+
+                                                <button
+                                                >Chose Image</button>
+                                            </div>
+                                        </div>
+                                        <h1>Billing Address</h1>
+
+                                        <div className='inputsSec'>
+                                            <form>
+                                                <div className='three'>
+                                                    <div>
+                                                        <label>First Name</label>
+                                                        <input
+                                                            name="firstName"
+                                                            value={formData.firstName}
+                                                            onChange={handleChange}
+                                                            placeholder="First Name"
+                                                        />
+                                                    </div>
+
+                                                    <div>
+                                                        <label>last Name</label>
+                                                        <input
+                                                            name="lastName"
+                                                            value={formData.lastName}
+                                                            onChange={handleChange}
+                                                            placeholder="Last Name"
+                                                        />
+                                                    </div>
+
+                                                    <div>
+                                                        <label>Company Name (optional)</label>
+                                                        <input
+                                                            name="Company"
+                                                            value={formData.Company}
+                                                            onChange={handleChange}
+                                                            placeholder="Zakirsoft"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <label>Street Address</label>
+                                                    <input
+                                                        name="Address"
+                                                        value={formData.Address}
+                                                        onChange={handleChange}
+                                                        placeholder="4140 Par|"
+                                                    />
+                                                </div>
+                                                <div className='three'>
+                                                    <div>
+                                                        <label>Email</label>
+                                                        <input
+                                                            name="email"
+                                                            value={formData.email}
+                                                            onChange={handleChange}
+                                                            placeholder="Email"
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <label>Phone</label>
+                                                        <input
+                                                            name="phone"
+                                                            value={formData.phone}
+                                                            onChange={handleChange}
+                                                            placeholder="Phone"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <button className='shop'
+                                                    type="button" onClick={handleSave}
+                                                >Save Changes</button>
+                                            </form>
+                                        </div>
+                                        <h1>Change Password</h1>
+                                        <div className='inputsTh'>
+                                            <form>
+                                                <div>
+                                                    <label>Current Password</label>
+                                                    <input
+                                                        name="current"
+                                                        value={formData.current}
+                                                        onChange={handleChange}
+                                                        placeholder="Phone"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <label>New Password</label>
+                                                        <input
+                                                            name="password"
+                                                            value={formData.password}
+                                                            onChange={handleChange}
+                                                            placeholder="Phone"
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <label>Confirm Password</label>
+                                                        <input
+                                                            name="confirm"
+                                                            value={formData.confirm}
+                                                            onChange={handleChange}
+                                                            placeholder="Phone"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <button className='shop'
+                                                    type="button" onClick={handleSave}
+                                                >Change Password</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </>
+    )
+}

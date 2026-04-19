@@ -1,0 +1,392 @@
+.profile {
+    margin-top: 100px;
+    margin-bottom: 60px;
+
+    h1 {
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border: 1px solid rgb(188, 185, 185);
+        padding: 20px 150px 20px 20px;
+
+
+        .navegates.active {
+            border-left: 2px solid #00B207;
+            opacity: .6;
+            max-width: 100%;
+            padding: 10px;
+        }
+    }
+
+    .left {
+        margin-left: 30px;
+        width: 70%;
+
+        .one {
+            border: 1px solid rgb(188, 185, 185);
+            padding: 20px 80px;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            .img {
+                background-color: rgb(204, 207, 210);
+                padding: 30px;
+                display: flex;
+                justify-content: center;
+                border-radius: 50%;
+                max-width: 100px;
+
+            }
+
+            img {
+                max-width: 40px;
+            }
+
+            a {
+                color: #00B207;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        }
+
+        .two {
+            border: 1px solid rgb(188, 185, 185);
+            padding: 20px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+
+            p {
+                color: gray;
+                width: 50%;
+            }
+
+            a {
+                color: #00B207;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .here {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+
+            .hereTwo {
+                border: 1px solid rgb(188, 185, 185);
+            }
+
+            a {
+                color: #00B207;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            h1 {
+                padding: 20px;
+            }
+
+            div {
+                margin-bottom: 20px;
+            }
+
+            .secId {
+                padding: 20px;
+
+            }
+
+            .id {
+                background-color: rgb(190, 186, 186);
+                padding: 20px;
+            }
+        }
+
+        .history {
+            border: 1px solid rgb(205, 202, 202);
+        }
+
+        .settings {
+
+            h1 {
+                border: 1px solid rgb(195, 190, 190);
+            }
+
+            .shop {
+                background-color: #00B207;
+                color: aliceblue;
+                display: flex;
+                padding: 10px;
+                gap: 10px;
+                width: 25%;
+                margin-top: 20px;
+                align-items: center;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                border-radius: 30px;
+                cursor: pointer;
+
+            }
+
+            button:hover {
+                transform: scale(0.99);
+
+                button {
+                    margin-right: 5px;
+                }
+            }
+
+            .first {
+                border: 1px solid rgb(195, 190, 190);
+            }
+
+            .inputsFi {
+                width: 100%;
+                margin-top: 20px;
+                padding: 20px;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+
+                    input {
+                        border: 1px solid rgb(195, 190, 190);
+                        padding: 10px;
+                    }
+                }
+
+
+            }
+
+            .account {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+
+                button {
+                    border: 1px solid #00B207;
+                    padding: 10px;
+                    border-radius: 30px;
+                    cursor: pointer;
+                    color: #00B207;
+                }
+            }
+
+
+            .img {
+                background-color: rgb(204, 207, 210);
+                padding: 50px;
+                display: flex;
+                justify-content: center;
+                border-radius: 50%;
+                max-width: 70%;
+
+            }
+
+            img {
+                max-width: 80%;
+            }
+
+            .inputsSec {
+                border: 1px solid rgb(195, 190, 190);
+                padding: 20px;
+
+                form {
+
+                    input {
+                        border: 1px solid rgb(195, 190, 190);
+                        padding: 10px;
+                    }
+
+                    div {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                    }
+
+                    .three {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                    }
+                }
+            }
+
+            .inputsTh {
+                border: 1px solid rgb(195, 190, 190);
+                padding: 20px;
+                width: 100%;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                input {
+                    border: 1px solid rgb(195, 190, 190);
+                    padding: 10px;
+                    width: 100%;
+                }
+            }
+
+        }
+
+    }
+}
+
+@media screen and (min-width: 320px) {
+    .allProfile {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
+    .profile {
+
+
+        .left {
+            margin: 0;
+            width: 100%;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            margin-inline: auto;
+            margin-left: 25px;
+
+        }
+
+        .hereTwo {
+            display: none;
+        }
+
+        .history {
+            width: 300%;
+        }
+
+        .left .settings {
+
+            .shop {
+                width: 100%;
+            }
+
+            .first {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .inputsSec {
+                width: 100%;
+                margin: 0;
+
+                form {
+
+                    .three {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (min-width: 568px) {
+
+    .allProfile {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .profile {
+
+        .left {
+            margin-left: 30px;
+        }
+
+        .history {
+            width: 200%;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .profile {
+        .details {
+            display: flex;
+            flex-direction: row;
+            width: 80%;
+            min-height: 100%;
+        }
+
+        .history {
+            width: 100%;
+        }
+
+        .left .settings {
+            .img {
+                max-width: 90%;
+            }
+
+            .shop {
+                width: 50%;
+            }
+
+            .first {
+                display: flex;
+                flex-direction: row;
+            }
+
+
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .profile {
+
+        .left .settings {
+
+            .shop{
+                width: 30%;
+            }
+            .inputsSec {
+                width: 100%;
+                margin: 0;
+
+                form {
+
+                    .three {
+                        display: flex;
+                        flex-direction: row;
+                    }
+                }
+            }
+        }
+    }
+}

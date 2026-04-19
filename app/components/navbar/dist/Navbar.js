@@ -14,12 +14,20 @@ require("./navbar.css");
 var react_1 = require("react");
 var navigation_1 = require("next/navigation");
 var Cart_1 = require("../addToCart/Cart");
-// import { useSearch } from './searchContext'
+var AuthContext_1 = require("./AuthContext");
+var navigation_2 = require("next/navigation");
 function Navbar() {
     var _a = react_1.useState(false), isAdd = _a[0], setIsAdd = _a[1];
     var pathname = navigation_1.usePathname();
     var cart = Cart_1.useCart().cart;
-    // const { search, setSearch, loading } = useSearch()
+    var _b = AuthContext_1.useAuth(), user = _b.user, logout = _b.logout;
+    var router = navigation_2.useRouter();
+    var firstName = (user === null || user === void 0 ? void 0 : user.firstName) ? user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)
+        : "";
+    var handleLogout = function () {
+        logout();
+        router.push("/home");
+    };
     return (React.createElement(React.Fragment, null,
         React.createElement("section", { className: 'location-sec' },
             React.createElement("div", { className: 'countainer location items-center' },
@@ -29,9 +37,18 @@ function Navbar() {
                 React.createElement("div", { className: 'det' },
                     React.createElement("p", null, "Eng"),
                     React.createElement("p", null, "USD"),
-                    React.createElement(link_1["default"], { href: "signin" }, "Sign in"),
-                    React.createElement("p", null, "/"),
-                    React.createElement(link_1["default"], { href: '/signup' }, "Sign up")))),
+                    !user ? (React.createElement(React.Fragment, null,
+                        React.createElement(link_1["default"], { href: "/signin" }, "Sign in"),
+                        React.createElement("p", null, "/"),
+                        React.createElement(link_1["default"], { href: "/signup" }, "Sign up"))) : (React.createElement(React.Fragment, null,
+                        React.createElement(link_1["default"], { className: 'account', href: "/profile" },
+                            "Your Account ",
+                            firstName),
+                        React.createElement("button", { onClick: function () {
+                                logout();
+                                handleLogout();
+                                alert("You have been logged out successfully");
+                            } }, "Logout")))))),
         React.createElement("section", { className: 'logo-sec' },
             React.createElement("div", { className: 'countainer logo' },
                 React.createElement("div", null,

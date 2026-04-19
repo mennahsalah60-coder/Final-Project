@@ -2,16 +2,17 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './signin.css'
 import { useFormik } from 'formik'
 import * as Yup from 'yup';
+import { useAuth } from '../components/navbar/AuthContext'
 
 export default function Page() {
     const [message, setMessage] = useState('')
     const [showAlert, setShowAlert] = useState(false)
-
     const router = useRouter()
+    const { login } = useAuth()
 
     const formik = useFormik({
         initialValues: {
@@ -25,9 +26,12 @@ export default function Page() {
                 .required('Required'),
         }),
         onSubmit: values => {
-            const fakeToken = '123456'
 
-            localStorage.setItem('token', fakeToken)
+            const userData = {
+                email: values.email
+            }
+
+            login(userData)
 
             setMessage('Logged in successfully!')
             setShowAlert(true)
@@ -35,10 +39,10 @@ export default function Page() {
             setTimeout(() => {
                 setShowAlert(false)
                 router.push('/home')
-            }, 3000)
-            console.log(values)
+            }, 1000)
+
             formik.resetForm()
-        },
+        }
     });
 
     return (
@@ -89,13 +93,15 @@ export default function Page() {
                 {showAlert && (
                     <div style={{
                         position: 'fixed',
-                        top: '20px',
-                        right: '20px',
+                        top: '50%',
+                        marginRight: '30px',
+                        marginLeft: '-30px',
                         backgroundColor: '#4caf50',
                         color: 'white',
-                        padding: '10px 20px',
+                        padding: '40px 60px',
                         borderRadius: '5px',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+                        fontSize: '25px',
+                        boxShadow: '0 2px 20px rgba(0,0,0,0.2)'
                     }}>
                         {message}
                     </div>

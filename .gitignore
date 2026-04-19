@@ -25,6 +25,7 @@ app/signup/dist/
 app/contact/dist/
 app/about/dist/
 app/blog/dist/
+app/profile/dist/
 
 # misc
 .DS_Store

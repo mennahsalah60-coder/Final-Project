@@ -70,7 +70,7 @@ export default function About() {
         sale: number;
         image: string;
         category: string;
-        
+
     };
 
 
@@ -193,6 +193,11 @@ export default function About() {
 
             <section className='pro' id='products'>
                 <div className='countainer flex'>
+                    {filteredProducts.length === 0 && (
+                        <div>
+                            <h1 className='font-bold text-red-600'>No Products Yet !</h1>
+                        </div>
+                    )}
                     <div className='products'>
                         {filteredProducts.map(item => (
                             <div className='product' key={item.id}>
@@ -305,7 +310,6 @@ export default function About() {
                                                 <p>{selectedProduct.category}</p>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

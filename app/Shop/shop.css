@@ -325,11 +325,6 @@ button {
         text-align: center;
     }
 
-    /* .content {
-        display: grid;
-        grid-template-columns: 1fr;
-    } */
-
     .btns {
         display: grid;
         grid-template-columns: 1fr;
