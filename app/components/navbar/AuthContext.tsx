@@ -7,12 +7,10 @@ type User = {
     firstName?: string;
     lastName?: string;
     email: string;
-    password: string;
-    current: string;
-    confirm: string;
     phone?: string;
     Company?: string;
     Address?: string;
+    password?: string;
 };
 
 type AuthContextType = {
@@ -35,7 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const savedUser = localStorage.getItem("user")
 
             if (savedUser) {
-                setUser(JSON.parse(savedUser))
+                setUser(JSON.parse(savedUser) as User)
             }
         } catch (error) {
             console.log("Error loading user:", error)

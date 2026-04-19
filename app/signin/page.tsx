@@ -28,7 +28,8 @@ export default function Page() {
         onSubmit: values => {
 
             const userData = {
-                email: values.email
+                email: values.email,
+                password: values.password,
             }
 
             login(userData)
