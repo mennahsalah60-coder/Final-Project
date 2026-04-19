@@ -14,18 +14,21 @@ import { useState } from 'react'
 import { useAuth } from '../components/navbar/AuthContext'
 import { useRouter } from 'next/navigation'
 
+
 type FormDataType = {
     firstName: string;
     lastName: string;
     email: string;
     phone: string;
-    password: string;
-    current: string;
-    confirm: string;
     Company: string;
     Address: string;
 };
 
+type PasswordType = {
+    current: string;
+    password: string;
+    confirm: string;
+};
 
 export default function Page() {
     const [active, setActive] = useState<string>('dashboard')
@@ -37,11 +40,14 @@ export default function Page() {
         lastName: user?.lastName || '',
         email: user?.email || '',
         phone: user?.phone || '',
-        password: user?.password || '',
-        current: user?.current || '',
-        confirm: user?.confirm || '',
         Company: user?.Company || '',
         Address: user?.Address || '',
+    })
+
+    const [passwordData, setPasswordData] = useState<PasswordType>({
+        current: '',
+        password: '',
+        confirm: '',
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,9 +63,30 @@ export default function Page() {
     };
 
     const handleSave = () => {
-        updateUser(formData)
-        alert("Saved successfully ✅")
+        updateUser(formData);
+        alert("Saved successfully ✅");
+    };
+
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPasswordData({
+            ...passwordData,
+            [e.target.name]: e.target.value
+        })
     }
+
+    const handlePasswordSave = () => {
+        if (passwordData.password !== passwordData.confirm) {
+            alert("Passwords do not match ❌");
+            return;
+        }
+
+        updateUser({
+            password: passwordData.password,
+        });
+
+        alert("Password updated successfully ✅");
+    };
+
 
     return (
         <>
@@ -407,9 +434,9 @@ export default function Page() {
                                                     <label>Current Password</label>
                                                     <input
                                                         name="current"
-                                                        value={formData.current}
-                                                        onChange={handleChange}
-                                                        placeholder="Phone"
+                                                        value={passwordData.current}
+                                                        onChange={handlePasswordChange}
+                                                        placeholder="Current Password"
                                                     />
                                                 </div>
                                                 <div>
@@ -417,23 +444,23 @@ export default function Page() {
                                                         <label>New Password</label>
                                                         <input
                                                             name="password"
-                                                            value={formData.password}
-                                                            onChange={handleChange}
-                                                            placeholder="Phone"
+                                                            value={passwordData.password}
+                                                            onChange={handlePasswordChange}
+                                                            placeholder="Password"
                                                         />
                                                     </div>
                                                     <div>
                                                         <label>Confirm Password</label>
                                                         <input
                                                             name="confirm"
-                                                            value={formData.confirm}
-                                                            onChange={handleChange}
-                                                            placeholder="Phone"
+                                                            value={passwordData.confirm}
+                                                            onChange={handlePasswordChange}
+                                                            placeholder="Confirm Password"
                                                         />
                                                     </div>
                                                 </div>
                                                 <button className='shop'
-                                                    type="button" onClick={handleSave}
+                                                    type="button" onClick={handlePasswordSave}
                                                 >Change Password</button>
                                             </form>
                                         </div>

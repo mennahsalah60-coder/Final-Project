@@ -340,12 +340,16 @@
         .details {
             display: flex;
             flex-direction: row;
-            width: 80%;
+            width: 100%;
             min-height: 100%;
         }
 
         .history {
             width: 100%;
+        }
+
+        .left .hereTwo {
+            display: block;
         }
 
         .left .settings {
@@ -372,9 +376,10 @@
 
         .left .settings {
 
-            .shop{
+            .shop {
                 width: 30%;
             }
+
             .inputsSec {
                 width: 100%;
                 margin: 0;
