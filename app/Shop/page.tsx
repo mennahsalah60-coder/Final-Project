@@ -70,7 +70,7 @@ export default function About() {
         sale: number;
         image: string;
         category: string;
-
+        quantity: number;
     };
 
 
@@ -215,7 +215,7 @@ export default function About() {
                                                 if (cart.some(p => p.id === item.id)) {
                                                     setCart(prev => prev.filter(p => p.id !== item.id));
                                                 } else {
-                                                    setCart(prev => [...prev, item]);
+                                                    setCart(prev => [...prev, { ...item, quantity: 1 }]);
                                                 }
                                             }}
                                         >

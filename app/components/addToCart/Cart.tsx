@@ -7,6 +7,7 @@ type Product = {
     price: number;
     sale: number;
     image: string;
+    quantity: number;
 };
 
 

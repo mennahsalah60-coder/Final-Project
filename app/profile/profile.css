@@ -2,6 +2,22 @@
     margin-top: 100px;
     margin-bottom: 60px;
 
+    .shop {
+        background-color: #00B207;
+        color: aliceblue;
+        display: flex;
+        padding: 10px;
+        gap: 10px;
+        width: 25%;
+        margin-top: 20px;
+        align-items: center;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
     h1 {
         font-size: 25px;
         font-weight: 700;
@@ -130,22 +146,6 @@
                 border: 1px solid rgb(195, 190, 190);
             }
 
-            .shop {
-                background-color: #00B207;
-                color: aliceblue;
-                display: flex;
-                padding: 10px;
-                gap: 10px;
-                width: 25%;
-                margin-top: 20px;
-                align-items: center;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                border-radius: 30px;
-                cursor: pointer;
-
-            }
 
             button:hover {
                 transform: scale(0.99);
@@ -252,6 +252,119 @@
 
         }
 
+        .shopCart {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 10px;
+
+            .productsCart {
+                border: 1px solid rgb(214, 206, 206);
+                padding: 20px;
+
+                .topEMm {
+                    align-items: center;
+                    margin-bottom: 20px;
+                }
+
+                .empty {
+                    color: red;
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+
+                .ret {
+                    width: 100%;
+                }
+
+                .title {
+                    border-bottom: 1px solid rgb(207, 203, 203);
+                    padding-bottom: 20px;
+                    color: gray;
+                }
+
+                .cart-item {
+                    border-bottom: 1px solid rgb(207, 203, 203);
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .quantity {
+                    border: 1px solid rgb(211, 205, 205);
+                    max-width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 10px;
+                    border-radius: 40px;
+                    gap: 10px;
+
+                }
+
+                .back {
+                    display: flex;
+                    justify-content: space-between;
+
+                    button {
+                        width: 100%;
+                        background-color: gray;
+                        font-size: 15px;
+                    }
+                }
+
+                .coupon {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    align-items: center;
+                    text-align: center;
+
+
+                    h2 {
+                        font-size: 20px;
+                        font-weight: 700;
+                        width: 30%;
+                    }
+
+                    div {
+                        border: 1px solid rgb(174, 166, 166);
+                        border-radius: 30px;
+                        width: 100%;
+                        justify-content: space-between;
+
+                    }
+
+                    button {
+                        background-color: black;
+                        color: aliceblue;
+                        padding: 10px;
+                        border-radius: 30px;
+                    }
+
+                    input {
+                        outline: none;
+                        padding: 20px;
+                    }
+
+                }
+            }
+
+            .total {
+                border: 1px solid rgb(192, 188, 188);
+                padding: 20px;
+
+                div {
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: 1px solid rgb(201, 195, 195);
+                    padding-bottom: 10px;
+                }
+
+                button {
+                    width: 100%;
+                }
+
+            }
+        }
     }
 }
 
@@ -269,11 +382,11 @@
             margin: 0;
             width: 100%;
 
-            .one{
+            .one {
                 max-width: 100%;
             }
 
-            .two{
+            .two {
                 max-width: 100%;
             }
         }
@@ -317,6 +430,32 @@
             }
         }
 
+        .left .shopCart {
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+
+            .productsCart .quantity {
+                display: flex;
+                flex-direction: column;
+
+                img {
+                    max-width: 15px;
+                }
+            }
+
+            .coupon {
+                display: flex;
+                flex-direction: column;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+            }
+        }
+
     }
 }
 
@@ -336,6 +475,7 @@
         .history {
             width: 200%;
         }
+
     }
 }
 
@@ -373,6 +513,29 @@
 
 
         }
+
+        .left {
+
+            .shopCart {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+
+                .coupon {
+                    display: flex;
+                    flex-direction: row;
+
+                    h2 {
+                        font-size: 15px !important;
+                    }
+
+                    div {
+                        display: flex;
+                        flex-direction: row;
+                    }
+
+                }
+            }
+        }
     }
 }
 
@@ -394,6 +557,22 @@
                     .three {
                         display: flex;
                         flex-direction: row;
+                    }
+                }
+            }
+        }
+
+        .left {
+
+            .shopCart {
+                font-size: 15px;
+
+                .productsCart .quantity {
+                    display: flex;
+                    flex-direction: row;
+
+                    img {
+                        max-width: 20px;
                     }
                 }
             }

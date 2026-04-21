@@ -333,7 +333,7 @@ export default function Hero() {
                                                 // }}
                                                 onClick={() => {
                                                     handleAddToCart(item)
-                                                    setCart(prev => [...prev, item]);
+                                                    setCart(prev => [...prev, { ...item, quantity: 1 }]);
                                                 }}
                                             >
                                                 {cart.some(p => p.id === item.id) ? (
