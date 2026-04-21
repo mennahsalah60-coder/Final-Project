@@ -435,6 +435,15 @@
             display: flex;
             flex-direction: column;
 
+            .closeBtn {
+                img {
+                    max-width: 15px;
+                }
+            }
+
+            .cart-item{
+                gap: 5;
+            }
             .productsCart .quantity {
                 display: flex;
                 flex-direction: column;
@@ -567,6 +576,11 @@
             .shopCart {
                 font-size: 15px;
 
+                .closeBtn {
+                img {
+                    max-width: 25px;
+                }
+            }
                 .productsCart .quantity {
                     display: flex;
                     flex-direction: row;

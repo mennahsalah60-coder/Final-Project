@@ -330,7 +330,7 @@ export default function Page() {
                                                         <p className='empty'>Your cart is empty 🛒</p>
 
                                                         <Link href="/Shop">
-                                                            <button className='shop ret'>Return to Shop</button>
+                                                            <button className='shop ret'>Shopping Now !</button>
                                                         </Link>
                                                     </div>
                                                         </>
@@ -368,11 +368,13 @@ export default function Page() {
                                                                         ${Number(product.price) * Number(product.quantity || 1)}
                                                                     </div>
 
-                                                                    <button onClick={() => {
+                                                                    <div className='closeBtn'>
+                                                                        <button onClick={() => {
                                                                         setCart(cart.filter(item => item.id !== product.id))
                                                                     }}>
                                                                         <Image src={close} alt='' />
                                                                     </button>
+                                                                    </div>
 
                                                                 </div>
 
