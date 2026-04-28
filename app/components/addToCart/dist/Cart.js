@@ -7,6 +7,15 @@ var CartContext = react_1.createContext(undefined);
 function CartProvider(_a) {
     var children = _a.children;
     var _b = react_1.useState([]), cart = _b[0], setCart = _b[1];
+    react_1.useEffect(function () {
+        var savedCart = localStorage.getItem("cart");
+        if (savedCart) {
+            setCart(JSON.parse(savedCart));
+        }
+    }, []);
+    react_1.useEffect(function () {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
     return (React.createElement(CartContext.Provider, { value: { cart: cart, setCart: setCart } }, children));
 }
 exports.CartProvider = CartProvider;
