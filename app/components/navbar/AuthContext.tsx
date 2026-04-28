@@ -53,14 +53,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     const updateUser = (newData: Partial<User>) => {
-    setUser((prev) => {
-        if (!prev) return prev;
+        setUser((prev) => {
+            if (!prev) return prev;
 
-        const updatedUser = { ...prev, ...newData };
-        localStorage.setItem("user", JSON.stringify(updatedUser));
-        return updatedUser;
-    });
-};
+            const updatedUser = { ...prev, ...newData };
+            localStorage.setItem("user", JSON.stringify(updatedUser));
+            return updatedUser;
+        });
+    };
 
     return (
         <AuthContext.Provider value={{ user, login, logout, updateUser, loading }}>

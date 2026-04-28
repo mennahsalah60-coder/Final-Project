@@ -22,7 +22,7 @@ import view from '../../public/Group (1).png'
 import addToCart from '../../public/Add To Cart.png'
 import remove from '../../public/Add To Cart (1).png'
 import { useCart } from '../components/addToCart/Cart';
-
+import Swal from 'sweetalert2'
 
 import './hero.css'
 import { useEffect, useState } from 'react';
@@ -31,7 +31,7 @@ export default function Hero() {
     const [fruits, setFruits] = useState<Fruit[]>([]);
     const [vegetables, setVegetables] = useState<vegetable[]>([]);
     const { cart, setCart } = useCart()
-    
+
     const products = [
         {
             img: img1,
@@ -89,7 +89,7 @@ export default function Hero() {
         price: number;
         sale: number;
     };
-    
+
     type vegetable = {
         id: number;
         name: string;
@@ -106,7 +106,7 @@ export default function Hero() {
                 setVegetables(data.vegetables.slice(0, 8));
             });
     }, []);
-    
+
     // TIMER IS HERE
     const [time, setTime] = useState({
         days: 0,
@@ -253,10 +253,29 @@ export default function Hero() {
                                             <button
                                                 className={`add-to-cart cursor-pointer ${cart.some(p => p.id === item.id) ? 'added' : ''}`}
                                                 onClick={() => {
-                                                    if (cart.some(p => p.id === item.id)) {
+                                                    const isExist = cart.some(p => p.id === item.id);
+
+                                                    if (isExist) {
                                                         setCart(prev => prev.filter(p => p.id !== item.id));
+
+                                                        Swal.fire({
+                                                            icon: 'info',
+                                                            title: 'Removed from cart',
+                                                            text: `${item.name} removed successfully`,
+                                                            showConfirmButton: false,
+                                                            timer: 1200
+                                                        });
+
                                                     } else {
                                                         setCart(prev => [...prev, { ...item, quantity: 1 }]);
+
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Added to cart 🛒',
+                                                            text: `${item.name} added successfully`,
+                                                            confirmButtonText: 'Continue',
+                                                            showCancelButton: false,
+                                                        })
                                                     }
                                                 }}
                                             >
@@ -291,10 +310,29 @@ export default function Hero() {
                                             <button
                                                 className={`add-to-cart cursor-pointer ${cart.some(p => p.id === item.id) ? 'added' : ''}`}
                                                 onClick={() => {
-                                                    if (cart.some(p => p.id === item.id)) {
+                                                    const isExist = cart.some(p => p.id === item.id);
+
+                                                    if (isExist) {
                                                         setCart(prev => prev.filter(p => p.id !== item.id));
+
+                                                        Swal.fire({
+                                                            icon: 'info',
+                                                            title: 'Removed from cart',
+                                                            text: `${item.name} removed successfully`,
+                                                            showConfirmButton: false,
+                                                            timer: 1200
+                                                        });
+
                                                     } else {
                                                         setCart(prev => [...prev, { ...item, quantity: 1 }]);
+
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Added to cart 🛒',
+                                                            text: `${item.name} added successfully`,
+                                                            confirmButtonText: 'Continue',
+                                                            showCancelButton: false,
+                                                        })
                                                     }
                                                 }}
                                             >

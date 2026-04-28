@@ -13,7 +13,10 @@
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-toastify": "^11.1.0",
     "sass": "^1.97.3",
+    "swal": "^0.1.0",
+    "sweetalert2": "^11.26.24",
     "yup": "^1.7.1"
   },
   "devDependencies": {

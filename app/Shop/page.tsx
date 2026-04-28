@@ -11,6 +11,7 @@ import rate from '../../public/Rating.png'
 import brand from '../../public/Group 19.png'
 import removeFromFav from '../../public/remove.svg'
 import addToFav from '../../public/add.svg'
+import Swal from 'sweetalert2'
 
 export default function About() {
     const [category, setCategory] = useState('');
@@ -212,10 +213,29 @@ export default function About() {
                                         <button
                                             className={`add-to-cart cursor-pointer ${cart.some(p => p.id === item.id) ? 'added' : ''}`}
                                             onClick={() => {
-                                                if (cart.some(p => p.id === item.id)) {
+                                                const isExist = cart.some(p => p.id === item.id);
+
+                                                if (isExist) {
                                                     setCart(prev => prev.filter(p => p.id !== item.id));
+
+                                                    Swal.fire({
+                                                        icon: 'info',
+                                                        title: 'Removed from cart',
+                                                        text: `${item.name} removed successfully`,
+                                                        showConfirmButton: false,
+                                                        timer: 1200
+                                                    });
+
                                                 } else {
                                                     setCart(prev => [...prev, { ...item, quantity: 1 }]);
+
+                                                    Swal.fire({
+                                                        icon: 'success',
+                                                        title: 'Added to cart 🛒',
+                                                        text: `${item.name} added successfully`,
+                                                        confirmButtonText: 'Continue',
+                                                        showCancelButton: false,
+                                                    })
                                                 }
                                             }}
                                         >

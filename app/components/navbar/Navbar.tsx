@@ -14,6 +14,8 @@ import { usePathname } from 'next/navigation';
 import { useCart } from '../addToCart/Cart';
 import { useAuth } from './AuthContext'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2'
 
 export default function Navbar() {
     const [isAdd, setIsAdd] = useState(false)
@@ -26,11 +28,27 @@ export default function Navbar() {
             ? user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)
             : "";
 
-
     const handleLogout = () => {
-        logout();
-        router.push("/home");
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to logout",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, logout!',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logout();
+                toast.success('Logged out successfully!', {
+                    onClose: () => {
+                        router.push('/home');
+                    }
+                });
+            }
+        });
     };
+
+
     return (
         <>
             <section className='location-sec'>
@@ -45,7 +63,7 @@ export default function Navbar() {
 
                         {!user ? (
                             <>
-                                <Link href="/signin">Sign in</Link>
+                                <Link href="/signin">Log In</Link>
                                 <p>/</p>
                                 <Link href="/signup">Sign up</Link>
                             </>
@@ -54,15 +72,29 @@ export default function Navbar() {
                                 <Link className='account' href="/profile">Your Account {firstName}</Link>
                                 <button
                                     onClick={() => {
-                                        logout()
                                         handleLogout()
-                                        alert("You have been logged out successfully")
+                                        // alert("You have been logged out successfully")
                                     }}
                                 >
                                     Logout
                                 </button>
+
                             </>
                         )}
+                        {/* <ToastContainer
+                            position="top-right"
+                            autoClose={2000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                            transition={Bounce}
+                        />
+                        <ToastContainer /> */}
                     </div>
                 </div>
             </section>
@@ -77,10 +109,28 @@ export default function Navbar() {
                             <Image className='burger' src={isAdd ? close : burger} alt="menu toggle" />
                         </div>
                         <ul className={`menu ${isAdd ? 'active' : ''}`}>
-                            <div>
-                                <Link href="/signin">Sign in / </Link>
-                                <Link href="/signup"> Sign Up</Link>
-                            </div>
+                            {/* <div>
+                                {!user ? (
+                                    <>
+                                        <Link href="/signin">Log In</Link>
+                                        <p>/</p>
+                                        <Link href="/signup">Sign up</Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link className='account' href="/profile">Your Account {firstName}</Link>
+                                        <button
+                                            onClick={() => {
+                                                logout()
+                                                handleLogout()
+                                                alert("You have been logged out successfully")
+                                            }}
+                                        >
+                                            Logout
+                                        </button>
+                                    </>
+                                )}
+                            </div> */}
                             <Link href='/home' className={pathname === "/" ? "active" : ""}>Home</Link>
                             <Link href="/Shop" className={pathname === "/Shop" ? "active" : ""}>Shop</Link>
                             <Link href='/blog' className={pathname === "/blog" ? "active" : ""}>Blog</Link>

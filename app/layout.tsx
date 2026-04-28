@@ -5,6 +5,8 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/footer";
 import { CartProvider } from "./components/addToCart/Cart";
 import { AuthProvider } from "./components/navbar/AuthContext";
+import { ToastContainer } from 'react-toastify'
+import CompleteProfile from './components/AuthProvider/CompleteProfile'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,16 +32,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
-        
-          <AuthProvider>
-            <CartProvider>
 
-              <Navbar />
-              {children}
-              <Footer />
+        <AuthProvider>
+          <CartProvider>
 
-            </CartProvider>
-          </AuthProvider>
+            <Navbar />
+            <CompleteProfile />
+            {children}
+            <ToastContainer />
+            <Footer />
+
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

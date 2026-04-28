@@ -6,7 +6,7 @@ import dash1 from '../../public/dashboard 2.svg'
 import setting from '../../public/dashboard 2 (6).svg'
 import toCart from '../../public/dashboard 2 (5).svg'
 import out from '../../public/dashboard 2 (3).svg'
-import history from '../../public/dashboard 2 (4).svg'
+import history from '../../public/dashboard 2 (1).svg'
 import photo from '../../public/profile-round-1342-svgrepo-com.svg'
 import close from '../../public/Close (1).svg'
 import minus from '../../public/Minus.svg'
@@ -16,6 +16,8 @@ import { useState } from 'react'
 import { useAuth } from '../components/navbar/AuthContext'
 import { useRouter } from 'next/navigation'
 import { useCart } from '../../app/components/addToCart/Cart'
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2'
 
 type FormDataType = {
     firstName: string;
@@ -86,14 +88,37 @@ export default function Page() {
         })
     }
 
+
     const handleLogout = () => {
-        logout();
-        router.push("/home");
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to logout",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, logout!',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logout();
+                toast.success('Logged out successfully!', {
+                    onClose: () => {
+                        router.push('/home');
+                    }
+                });
+            }
+        });
     };
 
     const handleSave = () => {
         updateUser(formData);
-        alert("Saved successfully ✅");
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Saved Successfully',
+            text: 'Your account is now complete',
+            confirmButtonText: 'OK',
+            showCancelButton: false
+        });
     };
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,7 +130,12 @@ export default function Page() {
 
     const handlePasswordSave = () => {
         if (passwordData.password !== passwordData.confirm) {
-            alert("Passwords do not match ❌");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Passwords do not match',
+                confirmButtonText: 'Try Again'
+            });
             return;
         }
 
@@ -113,7 +143,13 @@ export default function Page() {
             password: passwordData.password,
         });
 
-        alert("Password updated successfully ✅");
+        Swal.fire({
+            icon: 'success',
+            title: 'Password Updated',
+            text: 'Your password has been changed successfully',
+            confirmButtonText: 'OK',
+            showCancelButton: false
+        });
     };
 
 
@@ -146,9 +182,7 @@ export default function Page() {
                             <Image src={out} alt='' />
                             <button
                                 onClick={() => {
-                                    logout()
                                     handleLogout()
-                                    alert("You have been logged out successfully")
                                 }}
                             >
                                 Logout
@@ -326,14 +360,14 @@ export default function Page() {
                                             <div>
                                                 {cart.length === 0 ? (
                                                     <>
-                                                    <div className='topEMm flex justify-between'>
-                                                        <p className='empty'>Your cart is empty 🛒</p>
+                                                        <div className='topEMm flex justify-between'>
+                                                            <p className='empty'>Your cart is empty 🛒</p>
 
-                                                        <Link href="/Shop">
-                                                            <button className='shop ret'>Shopping Now !</button>
-                                                        </Link>
-                                                    </div>
-                                                        </>
+                                                            <Link href="/Shop">
+                                                                <button className='shop ret'>Shopping Now !</button>
+                                                            </Link>
+                                                        </div>
+                                                    </>
                                                 ) : (
                                                     <div>
                                                         <div className='title flex justify-around'>
@@ -369,11 +403,20 @@ export default function Page() {
                                                                     </div>
 
                                                                     <div className='closeBtn'>
-                                                                        <button onClick={() => {
-                                                                        setCart(cart.filter(item => item.id !== product.id))
-                                                                    }}>
-                                                                        <Image src={close} alt='' />
-                                                                    </button>
+                                                                        <button
+                                                                            onClick={() => {
+                                                                                setCart(cart.filter(item => item.id !== product.id));
+
+                                                                                Swal.fire({
+                                                                                    icon: 'info',
+                                                                                    title: 'Removed from cart',
+                                                                                    text: 'Product removed successfully',
+                                                                                    confirmButtonText: 'Continue',
+                                                                                    showCancelButton: false
+                                                                                });
+                                                                            }}>
+                                                                            <Image src={close} alt='' />
+                                                                        </button>
                                                                     </div>
 
                                                                 </div>
@@ -387,7 +430,19 @@ export default function Page() {
                                                                 </Link>
                                                             </div>
                                                             <div>
-                                                                <button className='shop' onClick={() => setCart([])}>Update Cart</button>
+                                                                <button className='shop'
+                                                                    onClick={() => {
+                                                                        setCart([]);
+
+                                                                        Swal.fire({
+                                                                            icon: 'warning',
+                                                                            title: 'Cart Cleared',
+                                                                            text: 'All products have been removed',
+                                                                            confirmButtonText: 'OK',
+                                                                            showCancelButton: false
+                                                                        });
+                                                                    }}
+                                                                >Remove All</button>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -2,17 +2,24 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+// import { useState } from 'react'
 import './signin.css'
 import { useFormik } from 'formik'
 import * as Yup from 'yup';
 import { useAuth } from '../components/navbar/AuthContext'
+import { toast } from 'react-toastify';
+import { useState, useEffect } from 'react'
 
 export default function Page() {
-    const [message, setMessage] = useState('')
-    const [showAlert, setShowAlert] = useState(false)
     const router = useRouter()
     const { login } = useAuth()
+    const notify = () => {
+        toast.success('Logged in successfully!', {
+            onClose: () => {
+                router.push('/home');
+            }
+        });
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -26,25 +33,18 @@ export default function Page() {
                 .required('Required'),
         }),
         onSubmit: values => {
-
             const userData = {
                 email: values.email,
                 password: values.password,
             }
 
             login(userData)
-
-            setMessage('Logged in successfully!')
-            setShowAlert(true)
-
-            setTimeout(() => {
-                setShowAlert(false)
-                router.push('/home')
-            }, 1000)
+            notify()
 
             formik.resetForm()
         }
     });
+
 
     return (
         <section>
@@ -75,10 +75,10 @@ export default function Page() {
                         <div className='error'>{formik.errors.password}</div>
                     ) : null}
 
-                    <div>
-                        <div>
+                    <div className='forget'>
+                        <div className='div-1'>
                             <input type="radio" required />
-                            <p>Remember me</p>
+                            <label className='rem' htmlFor="">Remember me</label>
                         </div>
                         <div>
                             <Link href='#'>Forget Password</Link>
@@ -91,22 +91,6 @@ export default function Page() {
                 <p>
                     Don’t have account? <Link href="/signup">Register</Link>
                 </p>
-                {showAlert && (
-                    <div style={{
-                        position: 'fixed',
-                        top: '50%',
-                        marginRight: '30px',
-                        marginLeft: '-30px',
-                        backgroundColor: '#4caf50',
-                        color: 'white',
-                        padding: '40px 60px',
-                        borderRadius: '5px',
-                        fontSize: '25px',
-                        boxShadow: '0 2px 20px rgba(0,0,0,0.2)'
-                    }}>
-                        {message}
-                    </div>
-                )}
             </div>
         </section>
     )

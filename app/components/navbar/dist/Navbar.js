@@ -16,6 +16,8 @@ var navigation_1 = require("next/navigation");
 var Cart_1 = require("../addToCart/Cart");
 var AuthContext_1 = require("./AuthContext");
 var navigation_2 = require("next/navigation");
+var react_toastify_1 = require("react-toastify");
+var sweetalert2_1 = require("sweetalert2");
 function Navbar() {
     var _a = react_1.useState(false), isAdd = _a[0], setIsAdd = _a[1];
     var pathname = navigation_1.usePathname();
@@ -25,8 +27,23 @@ function Navbar() {
     var firstName = (user === null || user === void 0 ? void 0 : user.firstName) ? user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)
         : "";
     var handleLogout = function () {
-        logout();
-        router.push("/home");
+        sweetalert2_1["default"].fire({
+            title: 'Are you sure?',
+            text: "You want to logout",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, logout!',
+            cancelButtonText: 'No'
+        }).then(function (result) {
+            if (result.isConfirmed) {
+                logout();
+                react_toastify_1.toast.success('Logged out successfully!', {
+                    onClose: function () {
+                        router.push('/home');
+                    }
+                });
+            }
+        });
     };
     return (React.createElement(React.Fragment, null,
         React.createElement("section", { className: 'location-sec' },
@@ -38,16 +55,15 @@ function Navbar() {
                     React.createElement("p", null, "Eng"),
                     React.createElement("p", null, "USD"),
                     !user ? (React.createElement(React.Fragment, null,
-                        React.createElement(link_1["default"], { href: "/signin" }, "Sign in"),
+                        React.createElement(link_1["default"], { href: "/signin" }, "Log In"),
                         React.createElement("p", null, "/"),
                         React.createElement(link_1["default"], { href: "/signup" }, "Sign up"))) : (React.createElement(React.Fragment, null,
                         React.createElement(link_1["default"], { className: 'account', href: "/profile" },
                             "Your Account ",
                             firstName),
                         React.createElement("button", { onClick: function () {
-                                logout();
                                 handleLogout();
-                                alert("You have been logged out successfully");
+                                // alert("You have been logged out successfully")
                             } }, "Logout")))))),
         React.createElement("section", { className: 'logo-sec' },
             React.createElement("div", { className: 'countainer logo' },
@@ -57,9 +73,6 @@ function Navbar() {
                     React.createElement("div", { className: 'w-7', onClick: function () { return setIsAdd(function (prev) { return !prev; }); } },
                         React.createElement(image_1["default"], { className: 'burger', src: isAdd ? close_svg_1["default"] : burger_svg_1["default"], alt: "menu toggle" })),
                     React.createElement("ul", { className: "menu " + (isAdd ? 'active' : '') },
-                        React.createElement("div", null,
-                            React.createElement(link_1["default"], { href: "/signin" }, "Sign in / "),
-                            React.createElement(link_1["default"], { href: "/signup" }, " Sign Up")),
                         React.createElement(link_1["default"], { href: '/home', className: pathname === "/" ? "active" : "" }, "Home"),
                         React.createElement(link_1["default"], { href: "/Shop", className: pathname === "/Shop" ? "active" : "" }, "Shop"),
                         React.createElement(link_1["default"], { href: '/blog', className: pathname === "/blog" ? "active" : "" }, "Blog"),

@@ -2,18 +2,24 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup';
 import './signup.css'
 import { useAuth } from '../components/navbar/AuthContext'
+import { toast } from 'react-toastify';
 
 
 export default function Page() {
-    const [message, setMessage] = useState('')
-    const [showAlert, setShowAlert] = useState(false)
     const router = useRouter()
     const { login } = useAuth()
+    const notify = () => {
+        toast.success('Signed Up successfully!', {
+            onClose: () => {
+                router.push('/home');
+            }
+        });
+    };
 
 
     const formik = useFormik({
@@ -39,15 +45,8 @@ export default function Page() {
             }
 
             login(userData)
-
-            setMessage('Logged in successfully!')
-            setShowAlert(true)
-
-            setTimeout(() => {
-                setShowAlert(false)
-                router.push('/home')
-            }, 1000)
-
+            notify()
+            
             formik.resetForm()
         }
     });
@@ -94,7 +93,7 @@ export default function Page() {
 
                     <div className='remember'>
                         <input type="radio" name='remember' required />
-                        <p>Accept all terms & Conditions</p>
+                        <label className='rem' htmlFor="">Accept all terms & Conditions</label>
                     </div>
 
                     <button type="submit">Create Account</button>
@@ -103,22 +102,6 @@ export default function Page() {
                 <p>
                     Already have account <Link href="/signin">Login</Link>
                 </p>
-                {showAlert && (
-                    <div style={{
-                        position: 'fixed',
-                        top: '50%',
-                        marginRight: '30px',
-                        marginLeft: '-30px',
-                        backgroundColor: '#4caf50',
-                        color: 'white',
-                        padding: '40px 60px',
-                        borderRadius: '5px',
-                        fontSize: '25px',
-                        boxShadow: '0 2px 20px rgba(0,0,0,0.2)'
-                    }}>
-                        {message}
-                    </div>
-                )}
             </div>
         </section>
     )
