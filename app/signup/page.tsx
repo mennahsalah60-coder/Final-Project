@@ -92,8 +92,8 @@ export default function Page() {
                     ) : null}
 
                     <div className='remember'>
-                        <input type="radio" name='remember' required />
-                        <label className='rem' htmlFor="">Accept all terms & Conditions</label>
+                        <input type="radio"  id="remember" name='remember' required />
+                        <label className='rem' htmlFor="remember">Accept all terms & Conditions</label>
                     </div>
 
                     <button type="submit">Create Account</button>

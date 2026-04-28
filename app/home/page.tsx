@@ -22,7 +22,8 @@ import view from '../../public/Group (1).png'
 import addToCart from '../../public/Add To Cart.png'
 import remove from '../../public/Add To Cart (1).png'
 import { useCart } from '../components/addToCart/Cart';
-import Swal from 'sweetalert2'
+import { toast } from 'react-toastify';
+
 
 import './hero.css'
 import { useEffect, useState } from 'react';
@@ -31,6 +32,12 @@ export default function Hero() {
     const [fruits, setFruits] = useState<Fruit[]>([]);
     const [vegetables, setVegetables] = useState<vegetable[]>([]);
     const { cart, setCart } = useCart()
+    const notify = () => {
+        toast.success('Product added to cart');
+    };
+    const notify_2 = () => {
+        toast.success('Product removed from cart');
+    };
 
     const products = [
         {
@@ -258,24 +265,12 @@ export default function Hero() {
                                                     if (isExist) {
                                                         setCart(prev => prev.filter(p => p.id !== item.id));
 
-                                                        Swal.fire({
-                                                            icon: 'info',
-                                                            title: 'Removed from cart',
-                                                            text: `${item.name} removed successfully`,
-                                                            showConfirmButton: false,
-                                                            timer: 1200
-                                                        });
+                                                        notify_2()
 
                                                     } else {
                                                         setCart(prev => [...prev, { ...item, quantity: 1 }]);
 
-                                                        Swal.fire({
-                                                            icon: 'success',
-                                                            title: 'Added to cart 🛒',
-                                                            text: `${item.name} added successfully`,
-                                                            confirmButtonText: 'Continue',
-                                                            showCancelButton: false,
-                                                        })
+                                                        notify()
                                                     }
                                                 }}
                                             >
@@ -315,24 +310,12 @@ export default function Hero() {
                                                     if (isExist) {
                                                         setCart(prev => prev.filter(p => p.id !== item.id));
 
-                                                        Swal.fire({
-                                                            icon: 'info',
-                                                            title: 'Removed from cart',
-                                                            text: `${item.name} removed successfully`,
-                                                            showConfirmButton: false,
-                                                            timer: 1200
-                                                        });
+                                                        notify_2()
 
                                                     } else {
                                                         setCart(prev => [...prev, { ...item, quantity: 1 }]);
 
-                                                        Swal.fire({
-                                                            icon: 'success',
-                                                            title: 'Added to cart 🛒',
-                                                            text: `${item.name} added successfully`,
-                                                            confirmButtonText: 'Continue',
-                                                            showCancelButton: false,
-                                                        })
+                                                        notify()
                                                     }
                                                 }}
                                             >

@@ -11,7 +11,8 @@ import rate from '../../public/Rating.png'
 import brand from '../../public/Group 19.png'
 import removeFromFav from '../../public/remove.svg'
 import addToFav from '../../public/add.svg'
-import Swal from 'sweetalert2'
+import { toast } from 'react-toastify';
+
 
 export default function About() {
     const [category, setCategory] = useState('');
@@ -22,6 +23,12 @@ export default function About() {
     const [fav, setFav] = useState<(Product)[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const notify = () => {
+        toast.success('Product added to cart');
+    };
+    const notify_2 = () => {
+        toast.success('Product removed from cart');
+    };
 
     // TIMER IS HERE
     const [time, setTime] = useState({
@@ -218,24 +225,12 @@ export default function About() {
                                                 if (isExist) {
                                                     setCart(prev => prev.filter(p => p.id !== item.id));
 
-                                                    Swal.fire({
-                                                        icon: 'info',
-                                                        title: 'Removed from cart',
-                                                        text: `${item.name} removed successfully`,
-                                                        showConfirmButton: false,
-                                                        timer: 1200
-                                                    });
+                                                    notify_2()
 
                                                 } else {
                                                     setCart(prev => [...prev, { ...item, quantity: 1 }]);
 
-                                                    Swal.fire({
-                                                        icon: 'success',
-                                                        title: 'Added to cart 🛒',
-                                                        text: `${item.name} added successfully`,
-                                                        confirmButtonText: 'Continue',
-                                                        showCancelButton: false,
-                                                    })
+                                                    notify()
                                                 }
                                             }}
                                         >

@@ -8,7 +8,6 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup';
 import { useAuth } from '../components/navbar/AuthContext'
 import { toast } from 'react-toastify';
-import { useState, useEffect } from 'react'
 
 export default function Page() {
     const router = useRouter()
@@ -77,8 +76,8 @@ export default function Page() {
 
                     <div className='forget'>
                         <div className='div-1'>
-                            <input type="radio" required />
-                            <label className='rem' htmlFor="">Remember me</label>
+                            <input type="radio" id='rem' required />
+                            <label className='rem' htmlFor="rem">Remember me</label>
                         </div>
                         <div>
                             <Link href='#'>Forget Password</Link>
