@@ -18,7 +18,8 @@
 # production
 /build
 app/dist/
-app/app/components/AuthProvider/CompleteProfile/dist/
+app/components/AuthProvider/CompleteProfile/dist/
+app/components/addToCart/dist/
 app/home/dist/
 app/Shop/dist/
 app/signin/dist/
