@@ -25,6 +25,7 @@ import remove from '../public/Add To Cart (1).png'
 import '../app/home/hero.css'
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2'
 
 
 import { useRouter } from "next/navigation";
@@ -34,14 +35,6 @@ export default function Hero() {
     const [fruits, setFruits] = useState<Fruit[]>([]);
     const [vegetables, setVegetables] = useState<vegetable[]>([]);
     const [cart, setCart] = useState<Product[]>([])
-    const notify = () => {
-        toast.success('Please sign up to add items to your cart', {
-            onClose: () => {
-                router.push("/signup");
-
-            }
-        });
-    };
     const notify_2 = () => {
         toast.success('Product added to cart');
     };
@@ -175,7 +168,17 @@ export default function Hero() {
     const handleAddToCart = (productCart: Product) => {
         const token = localStorage.getItem("token");
         if (!token) {
-            notify()
+            // notify()
+            Swal.fire({
+                text: "Please sign up to add items to your cart",
+                icon: 'warning',
+                showCancelButton: false,
+                confirmButtonText: 'Sign Up',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    router.push('/signup');
+                }
+            });
             return;
         }
 
@@ -186,6 +189,7 @@ export default function Hero() {
         localStorage.setItem("cart", JSON.stringify(cart));
 
         notify_2()
+
     };
 
     // if (loading) return <p>loading...</p>;

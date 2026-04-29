@@ -41,7 +41,7 @@ export default function Navbar() {
                 logout();
                 toast.success('Logged out successfully!', {
                     onClose: () => {
-                        router.push('/home');
+                        router.push('/');
                     }
                 });
             }

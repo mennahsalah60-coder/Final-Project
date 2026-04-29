@@ -39,7 +39,7 @@ function Navbar() {
                 logout();
                 react_toastify_1.toast.success('Logged out successfully!', {
                     onClose: function () {
-                        router.push('/home');
+                        router.push('/');
                     }
                 });
             }

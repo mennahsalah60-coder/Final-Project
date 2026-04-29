@@ -68,6 +68,8 @@ export default function Page() {
                 };
 
                 toast.error(errorMessages[err.code] || "Something went wrong");
+                return;
+
             }
         }
     });
