@@ -1,13 +1,12 @@
-'use client'
+'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 type User = {
     uid: string;
+    email: string | null;
     firstName?: string;
     lastName?: string;
-    email: string | null;
-    password?: string;
     phone?: string;
     Company?: string;
     Address?: string;
@@ -27,44 +26,71 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
-    // Load user once
     useEffect(() => {
-        const savedUser = localStorage.getItem("user");
-        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        const auth = localStorage.getItem("auth");
+        const profile = localStorage.getItem("profile");
 
-        if (savedUser && isLoggedIn === "true") {
-            setUser(JSON.parse(savedUser));
-        } else {
-            setUser(null);
+        if (auth) {
+            const authData = JSON.parse(auth);
+            const profileData = profile ? JSON.parse(profile) : {};
+
+            setUser({
+                ...authData,
+                ...profileData,
+            });
         }
 
         setLoading(false);
     }, []);
-    // login
+
     const login = (data: User) => {
-        setUser(data);
-        localStorage.setItem("user", JSON.stringify(data));
+        const savedProfile = JSON.parse(localStorage.getItem("profile") || "{}");
+
+        const authData = {
+            uid: data.uid,
+            email: data.email,
+        };
+
+        const mergedUser = {
+            ...savedProfile,
+            ...data,
+        };
+
+        setUser(mergedUser);
+
+        localStorage.setItem("auth", JSON.stringify(authData));
+        localStorage.setItem("profile", JSON.stringify(mergedUser));
         localStorage.setItem("isLoggedIn", "true");
     };
 
-    // logout (NOT deleting data)
+
     const logout = () => {
         setUser(null);
-        localStorage.setItem("isLoggedIn", "false");
-    };
 
-    // update user safely
-    const updateUser = (newData: Partial<User>) => {
+        localStorage.removeItem("auth");
+        localStorage.removeItem("isLoggedIn");
+    }
+
+    const updateUser = (data: Partial<User>) => {
         setUser((prev) => {
             if (!prev) return prev;
 
-            const updated = { ...prev, ...newData };
+            const updated = { ...prev, ...data };
 
-            localStorage.setItem("user", JSON.stringify(updated));
+            const profileData = {
+                firstName: updated.firstName,
+                lastName: updated.lastName,
+                phone: updated.phone,
+                Company: updated.Company,
+                Address: updated.Address,
+            };
+
+            localStorage.setItem("profile", JSON.stringify(profileData));
 
             return updated;
         });
     };
+
 
     return (
         <AuthContext.Provider value={{ user, login, logout, updateUser, loading }}>
@@ -75,10 +101,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 export function useAuth() {
     const context = useContext(AuthContext);
-
-    if (!context) {
-        throw new Error("useAuth must be used inside AuthProvider");
-    }
-
+    if (!context) throw new Error("useAuth must be used inside AuthProvider");
     return context;
 }

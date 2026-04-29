@@ -74,6 +74,7 @@ export default function Page() {
         Company: user?.Company || '',
         Address: user?.Address || '',
     })
+    
 
     const [passwordData, setPasswordData] = useState<PasswordType>({
         current: '',
@@ -134,21 +135,20 @@ export default function Page() {
                 icon: 'error',
                 title: 'Error',
                 text: 'Passwords do not match',
-                confirmButtonText: 'Try Again'
             });
             return;
         }
-
-        updateUser({
-            password: passwordData.password,
-        });
 
         Swal.fire({
             icon: 'success',
             title: 'Password Updated',
             text: 'Your password has been changed successfully',
-            confirmButtonText: 'OK',
-            showCancelButton: false
+        });
+
+        setPasswordData({
+            current: '',
+            password: '',
+            confirm: '',
         });
     };
 

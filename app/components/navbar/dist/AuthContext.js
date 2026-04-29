@@ -19,36 +19,46 @@ function AuthProvider(_a) {
     var children = _a.children;
     var _b = react_1.useState(null), user = _b[0], setUser = _b[1];
     var _c = react_1.useState(true), loading = _c[0], setLoading = _c[1];
-    // Load user once
     react_1.useEffect(function () {
-        var savedUser = localStorage.getItem("user");
-        var isLoggedIn = localStorage.getItem("isLoggedIn");
-        if (savedUser && isLoggedIn === "true") {
-            setUser(JSON.parse(savedUser));
-        }
-        else {
-            setUser(null);
+        var auth = localStorage.getItem("auth");
+        var profile = localStorage.getItem("profile");
+        if (auth) {
+            var authData = JSON.parse(auth);
+            var profileData = profile ? JSON.parse(profile) : {};
+            setUser(__assign(__assign({}, authData), profileData));
         }
         setLoading(false);
     }, []);
-    // login
     var login = function (data) {
-        setUser(data);
-        localStorage.setItem("user", JSON.stringify(data));
+        var savedProfile = JSON.parse(localStorage.getItem("profile") || "{}");
+        var authData = {
+            uid: data.uid,
+            email: data.email
+        };
+        var mergedUser = __assign(__assign({}, savedProfile), data);
+        setUser(mergedUser);
+        localStorage.setItem("auth", JSON.stringify(authData));
+        localStorage.setItem("profile", JSON.stringify(mergedUser));
         localStorage.setItem("isLoggedIn", "true");
     };
-    // logout (NOT deleting data)
     var logout = function () {
         setUser(null);
-        localStorage.setItem("isLoggedIn", "false");
+        localStorage.removeItem("auth");
+        localStorage.removeItem("isLoggedIn");
     };
-    // update user safely
-    var updateUser = function (newData) {
+    var updateUser = function (data) {
         setUser(function (prev) {
             if (!prev)
                 return prev;
-            var updated = __assign(__assign({}, prev), newData);
-            localStorage.setItem("user", JSON.stringify(updated));
+            var updated = __assign(__assign({}, prev), data);
+            var profileData = {
+                firstName: updated.firstName,
+                lastName: updated.lastName,
+                phone: updated.phone,
+                Company: updated.Company,
+                Address: updated.Address
+            };
+            localStorage.setItem("profile", JSON.stringify(profileData));
             return updated;
         });
     };
@@ -57,9 +67,8 @@ function AuthProvider(_a) {
 exports.AuthProvider = AuthProvider;
 function useAuth() {
     var context = react_1.useContext(AuthContext);
-    if (!context) {
+    if (!context)
         throw new Error("useAuth must be used inside AuthProvider");
-    }
     return context;
 }
 exports.useAuth = useAuth;

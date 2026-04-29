@@ -54,6 +54,7 @@ export default function Page() {
                 };
 
                 login(appUser);
+                
 
                 toast.success("Logged in successfully!", {
                     onClose: () => router.push("/home"),
