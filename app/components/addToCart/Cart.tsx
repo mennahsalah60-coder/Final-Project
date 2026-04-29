@@ -1,6 +1,13 @@
 "use client";
 
-import {createContext, useContext, useState, useEffect, ReactNode} from "react";
+import {
+    createContext,
+    useContext,
+    useState,
+    useEffect,
+    ReactNode
+} from "react";
+import { useAuth } from "../navbar/AuthContext";
 
 type Product = {
     id: number;
@@ -18,19 +25,34 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+const getCartKey = (uid?: string) => `cart_${uid}`;
+
 export function CartProvider({ children }: { children: ReactNode }) {
     const [cart, setCart] = useState<Product[]>([]);
+    const { user } = useAuth();
 
+    // load cart per user
     useEffect(() => {
-        const savedCart = localStorage.getItem("cart");
+        if (!user?.uid) return;
+
+        const savedCart = localStorage.getItem(getCartKey(user.uid));
+
         if (savedCart) {
             setCart(JSON.parse(savedCart));
+        } else {
+            setCart([]);
         }
-    }, []);
+    }, [user]);
 
+    // save cart per user
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }, [cart]);
+        if (!user?.uid) return;
+
+        localStorage.setItem(
+            getCartKey(user.uid),
+            JSON.stringify(cart)
+        );
+    }, [cart, user]);
 
     return (
         <CartContext.Provider value={{ cart, setCart }}>

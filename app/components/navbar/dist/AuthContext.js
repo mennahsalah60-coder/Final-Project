@@ -19,35 +19,37 @@ function AuthProvider(_a) {
     var children = _a.children;
     var _b = react_1.useState(null), user = _b[0], setUser = _b[1];
     var _c = react_1.useState(true), loading = _c[0], setLoading = _c[1];
+    // Load user once
     react_1.useEffect(function () {
-        try {
-            var savedUser = localStorage.getItem("user");
-            if (savedUser) {
-                setUser(JSON.parse(savedUser));
-            }
+        var savedUser = localStorage.getItem("user");
+        var isLoggedIn = localStorage.getItem("isLoggedIn");
+        if (savedUser && isLoggedIn === "true") {
+            setUser(JSON.parse(savedUser));
         }
-        catch (error) {
-            console.log("Error loading user:", error);
+        else {
+            setUser(null);
         }
-        finally {
-            setLoading(false);
-        }
+        setLoading(false);
     }, []);
+    // login
     var login = function (data) {
         setUser(data);
         localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("isLoggedIn", "true");
     };
+    // logout (NOT deleting data)
     var logout = function () {
         setUser(null);
-        localStorage.removeItem("user");
+        localStorage.setItem("isLoggedIn", "false");
     };
+    // update user safely
     var updateUser = function (newData) {
         setUser(function (prev) {
             if (!prev)
                 return prev;
-            var updatedUser = __assign(__assign({}, prev), newData);
-            localStorage.setItem("user", JSON.stringify(updatedUser));
-            return updatedUser;
+            var updated = __assign(__assign({}, prev), newData);
+            localStorage.setItem("user", JSON.stringify(updated));
+            return updated;
         });
     };
     return (React.createElement(AuthContext.Provider, { value: { user: user, login: login, logout: logout, updateUser: updateUser, loading: loading } }, children));

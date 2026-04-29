@@ -27,7 +27,7 @@ export default function About() {
         toast.success('Product added to cart');
     };
     const notify_2 = () => {
-        toast.success('Product removed from cart');
+        toast.error('Product removed from cart');
     };
 
     // TIMER IS HERE

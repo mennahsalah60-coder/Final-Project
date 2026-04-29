@@ -2,25 +2,18 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup';
 import './signup.css'
 import { useAuth } from '../components/navbar/AuthContext'
 import { toast } from 'react-toastify';
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { FirebaseError } from "firebase/app";
 
 export default function Page() {
     const router = useRouter()
     const { login } = useAuth()
-    const notify = () => {
-        toast.success('Signed Up successfully!', {
-            onClose: () => {
-                router.push('/home');
-            }
-        });
-    };
-
 
     const formik = useFormik({
         initialValues: {
@@ -28,26 +21,54 @@ export default function Page() {
             password: '',
             confirmPassword: '',
         },
+
         validationSchema: Yup.object({
-            email: Yup.string().email('Invalid email address').required('Required'),
+            email: Yup.string()
+                .email('Invalid email address')
+                .required('Required'),
+
             password: Yup.string()
                 .min(8, 'Must be 8 characters at least')
                 .required('Required'),
+
             confirmPassword: Yup.string()
-                .oneOf([Yup.ref('password')],
-                    'Passwords must match')
-                .required('Required')
+                .oneOf([Yup.ref('password')], 'Passwords must match')
+                .required('Required'),
         }),
-        onSubmit: values => {
 
-            const userData = {
-                email: values.email
+        onSubmit: async (values, { resetForm }) => {
+            try {
+                const result = await createUserWithEmailAndPassword(
+                    auth,
+                    values.email,
+                    values.password
+                );
+
+                login(result.user);
+
+                toast.success("Account created successfully!", {
+                    onClose: () => router.push("/home"),
+                });
+
+                resetForm();
+
+            } catch (error: unknown) {
+                const err = error as FirebaseError;
+
+                console.log(err.code);
+
+                const errorMessages: Record<string, string> = {
+                    "auth/email-already-in-use": "Email already exists",
+                    "auth/invalid-email": "Invalid email address",
+                    "auth/weak-password": "Password is too weak",
+                    "auth/user-not-found": "No account found with this email",
+                    "auth/wrong-password": "Incorrect password",
+                    "auth/invalid-credential": "Email or password is incorrect",
+                    "auth/too-many-requests": "Too many attempts, try again later",
+                };
+
+                toast.error(errorMessages[err.code] || "Something went wrong");
             }
-
-            login(userData)
-            notify()
-            
-            formik.resetForm()
         }
     });
 
@@ -55,52 +76,51 @@ export default function Page() {
         <section>
             <div className='form countainer'>
                 <h2>Create Account</h2>
+
                 <form onSubmit={formik.handleSubmit}>
                     <input
-                        id="email"
                         name="email"
                         type="email"
-                        placeholder='Email'
+                        placeholder="Email"
                         onChange={formik.handleChange}
                         value={formik.values.email}
                     />
-                    {formik.touched.email && formik.errors.email ? (
+                    {formik.errors.email && formik.touched.email && (
                         <div className='error'>{formik.errors.email}</div>
-                    ) : null}
+                    )}
+
                     <input
-                        id="password"
                         name="password"
                         type="password"
-                        placeholder='Password'
+                        placeholder="Password"
                         onChange={formik.handleChange}
                         value={formik.values.password}
                     />
-                    {formik.touched.password && formik.errors.password ? (
+                    {formik.errors.password && formik.touched.password && (
                         <div className='error'>{formik.errors.password}</div>
-                    ) : null}
+                    )}
 
                     <input
-                        id="confirmPassword"
                         name="confirmPassword"
-                        type="confirmPassword"
-                        placeholder='Confirm Password'
+                        type="password"
+                        placeholder="Confirm Password"
                         onChange={formik.handleChange}
                         value={formik.values.confirmPassword}
                     />
-                    {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                    {formik.errors.confirmPassword && formik.touched.confirmPassword && (
                         <div className='error'>{formik.errors.confirmPassword}</div>
-                    ) : null}
+                    )}
 
                     <div className='remember'>
-                        <input type="radio"  id="remember" name='remember' required />
-                        <label className='rem' htmlFor="remember">Accept all terms & Conditions</label>
+                        <input type="checkbox" id="remember" required />
+                        <label htmlFor="remember">Accept all terms & Conditions</label>
                     </div>
 
                     <button type="submit">Create Account</button>
                 </form>
 
                 <p>
-                    Already have account <Link href="/signin">Login</Link>
+                    Already have account? <Link href="/signin">Login</Link>
                 </p>
             </div>
         </section>
