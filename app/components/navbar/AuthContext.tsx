@@ -7,6 +7,7 @@ type User = {
     firstName?: string;
     lastName?: string;
     email: string | null;
+    password?: string;
     phone?: string;
     Company?: string;
     Address?: string;
