@@ -74,7 +74,7 @@ export default function Page() {
         Company: user?.Company || '',
         Address: user?.Address || '',
     })
-    
+
 
     const [passwordData, setPasswordData] = useState<PasswordType>({
         current: '',
@@ -277,77 +277,81 @@ export default function Page() {
                                 <>
                                     <div className='history'>
                                         <h1>Order History</h1>
-                                        <div className='id flex justify-between'>
-                                            <p>Order ID</p>
-                                            <p>Date</p>
-                                            <p>Total</p>
-                                            <p>Status</p>
-                                            <p></p>
-                                        </div>
+                                        <table>
+                                            <tr className='id flex justify-between'>
+                                                <th>Order ID</th>
+                                                <th>Data</th>
+                                                <th>Total</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
 
-                                        <div className='secId flex justify-between'>
-                                            <p>#738</p>
-                                            <p>8 Sep, 2020</p>
-                                            <p>$25.00 (1 Product)</p>
-                                            <p>on the way</p>
-                                            <Link href=''>View Details</Link>
-                                        </div>
+                                            <tr className='secId flex justify-between'>
+                                                <td>#738</td>
+                                                <td>8 Sep, 2020</td>
+                                                <td>$25.00 (1 Product)</td>
+                                                <td>on the way</td>
+                                                <td><Link href=''>View Details</Link></td>
+                                            </tr>
 
-                                        <div className='secId flex justify-between'>
-                                            <p>#703</p>
-                                            <p>22 Oct, 2020</p>
-                                            <p>$250.00 (4 Products)</p>
-                                            <p>Completed</p>
-                                            <Link href=''>View Details</Link>
-                                        </div>
+                                            <tr className='secId flex justify-between'>
+                                                <td>#703</td>
+                                                <td>22 Oct, 2020</td>
+                                                <td>$250.00 (4 Products)</td>
+                                                <td>Completed</td>
+                                                <td><Link href=''>View Details</Link></td>
+                                            </tr>
 
-                                        <div className='secId flex justify-between'>
-                                            <p>#130</p>
-                                            <p>1 Feb, 2020</p>
-                                            <p>$35.00 (1 Products)</p>
-                                            <p>Completed</p>
-                                            <Link href=''>View Details</Link>
-                                        </div>
+                                            <tr className='secId flex justify-between'>
+                                                <td>#130</td>
+                                                <td>1 Feb, 2020</td>
+                                                <td>$35.00 (1 Products)</td>
+                                                <td>Completed</td>
+                                                <td><Link href=''>View Details</Link></td>
+                                            </tr>
 
-                                        <div className='secId flex justify-between'>
-                                            <p>#561</p>
-                                            <p>22 Oct, 2020</p>
-                                            <p>$250.00 (4 Products)</p>
-                                            <p>Completed</p>
-                                            <Link href=''>View Details</Link>
-                                        </div>
+                                            <tr className='secId flex justify-between'>
+                                                <td>#561</td>
+                                                <td>22 Oct, 2020</td>
+                                                <td>$250.00 (4 Products)</td>
+                                                <td>Completed</td>
+                                                <td><Link href=''>View Details</Link></td>
+                                            </tr>
 
-                                        <div className='secId flex justify-between'>
-                                            <p>#536</p>
-                                            <p>21 Sep, 2020</p>
-                                            <p>$578.00 (13 Products)</p>
-                                            <p>Completed</p>
-                                            <Link href=''>View Details</Link>
-                                        </div>
+                                            <tr className='secId flex justify-between'>
+                                                <td>#536</td>
+                                                <td>21 Sep, 2020</td>
+                                                <td>$578.00 (13 Products)</td>
+                                                <td>Completed</td>
+                                                <td><Link href=''>View Details</Link></td>
+                                            </tr>
 
-                                        <div className='secId flex justify-between'>
-                                            <p>#130</p>
-                                            <p>1 Feb, 2020</p>
-                                            <p>$35.00 (1 Products)</p>
-                                            <p>Completed</p>
-                                            <Link href=''>View Details</Link>
-                                        </div>
+                                            <tr className='secId flex justify-between'>
+                                                <td>#130</td>
+                                                <td>1 Feb, 2020</td>
+                                                <td>$35.00 (1 Products)</td>
+                                                <td>Completed</td>
+                                                <td><Link href=''>View Details</Link></td>
+                                            </tr>
 
-                                        <div className='secId flex justify-between'>
-                                            <p>#561</p>
-                                            <p>22 Oct, 2020</p>
-                                            <p>$250.00 (4 Products)</p>
-                                            <p>Completed</p>
-                                            <Link href=''>View Details</Link>
-                                        </div>
+                                            <tr className='secId flex justify-between'>
+                                                <td>#561</td>
+                                                <td>22 Oct, 2020</td>
+                                                <td>$250.00 (4 Products)</td>
+                                                <td>Completed</td>
+                                                <td><Link href=''>View Details</Link></td>
+                                            </tr>
 
-                                        <div className='secId flex justify-between'>
-                                            <p>#536</p>
-                                            <p>21 Sep, 2020</p>
-                                            <p>$578.00 (13 Products)</p>
-                                            <p>Completed</p>
-                                            <Link href=''>View Details</Link>
-                                        </div>
+                                            <tr className='secId flex justify-between'>
+                                                <td>#536</td>
+                                                <td>21 Sep, 2020</td>
+                                                <td>$578.00 (13 Products)</td>
+                                                <td>Completed</td>
+                                                <td><Link href=''>View Details</Link></td>
+                                            </tr>
+
+                                        </table>
+
                                     </div>
                                 </>
                             }

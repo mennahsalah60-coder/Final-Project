@@ -11,6 +11,8 @@ import rate from '../../public/Rating.png'
 import brand from '../../public/Group 19.png'
 import removeFromFav from '../../public/remove.svg'
 import addToFav from '../../public/add.svg'
+import minus from '../../public/Minus.svg'
+import plus from '../../public/Plus.svg'
 import { toast } from 'react-toastify';
 
 
@@ -23,6 +25,29 @@ export default function About() {
     const [fav, setFav] = useState<(Product)[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const increaseQty = (id: number) => {
+        setCart(prev =>
+            prev.map(item =>
+                item.id === id
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            )
+        );
+    };
+
+    const decreaseQty = (id: number) => {
+        setCart(prev =>
+            prev.map(item =>
+                item.id === id
+                    ? {
+                        ...item,
+                        quantity: item.quantity > 1 ? item.quantity - 1 : 1
+                    }
+                    : item
+            )
+        );
+    };
+
     const notify = () => {
         toast.success('Product added to cart');
     };
@@ -293,17 +318,42 @@ export default function About() {
                                                 </div>
                                             </div>
                                             <div className='btns'>
+                                                {cart
+                                                    .filter(product => product.id === selectedProduct.id)
+                                                    .map(product => (
+                                                        <div key={product.id} className='quantity'>
+                                                            <button onClick={() => decreaseQty(product.id)}>
+                                                                <Image src={minus} alt='' />
+                                                            </button>
+
+                                                            <span>{Number(product.quantity) || 1}</span>
+
+                                                            <button onClick={() => increaseQty(product.id)}>
+                                                                <Image src={plus} alt='' />
+                                                            </button>
+                                                        </div>
+                                                    ))}
                                                 <button
                                                     className={`cart ${cart.some(p => p.id === selectedProduct.id) ? 'added' : ''}`}
                                                     onClick={() => {
                                                         if (cart.some(p => p.id === selectedProduct.id)) {
                                                             setCart(prev => prev.filter(p => p.id !== selectedProduct.id));
                                                         } else {
-                                                            setCart(prev => [...prev, selectedProduct]);
+                                                            setCart(prev => [
+                                                                ...prev,
+                                                                {
+                                                                    ...selectedProduct,
+                                                                    quantity: 1,
+                                                                },
+                                                            ]);
                                                         }
                                                     }}
                                                 >
-                                                    <h2>{cart.some(p => p.id === selectedProduct.id) ? "Remve From Cart" : "Add To Cart"}</h2>
+                                                    <h2>
+                                                        {cart.some(p => p.id === selectedProduct.id)
+                                                            ? "Remove From Cart"
+                                                            : "Add To Cart"}
+                                                    </h2>
                                                 </button>
                                                 <button className='addToFav' onClick={() => {
                                                     if (fav.some(p => p.id === selectedProduct.id)) {
@@ -323,6 +373,10 @@ export default function About() {
                                             <div className='cat flex gap-2'>
                                                 <h3>Category: </h3>
                                                 <p>{selectedProduct.category}</p>
+                                            </div>
+                                            <div className='cat flex gap-2'>
+                                                <h3>Tag: </h3>
+                                                <p>{selectedProduct.category} Healthy {selectedProduct.name}</p>
                                             </div>
                                         </div>
                                     </div>

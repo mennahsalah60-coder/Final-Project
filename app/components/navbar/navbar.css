@@ -92,16 +92,19 @@
 
         .counter {
             background-color: #2C742F;
-            min-width: 25%;
-            height: 60%;
+            min-width: 15%;
+            height: 50%;
             border-radius: 50%;
             color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 700;
+            margin-left: -13px;
+            margin-top: -6px;
         }
+
 
     }
 }
@@ -143,13 +146,14 @@ nav {
 
     }
 
-    .account{
+    .account {
         color: #00B207;
     }
 
-    .account:hover{
+    .account:hover {
         text-decoration: underline;
     }
+
     .logo {
         display: grid;
         grid-template-columns: 1fr 0fr;
@@ -251,6 +255,11 @@ nav {
             gap: 10px;
             justify-content: flex-end;
 
+            .counter {
+                margin-left: -16px;
+                min-width: 20%;
+            }
+
             .heart {
                 width: 25%;
             }
@@ -304,5 +313,12 @@ nav {
     .countainer {
         max-width: 1350px;
         margin-inline: auto;
+    }
+
+    .fav {
+        .counter {
+            margin-left: -13px !important;
+            min-width: 15% !important;
+        }
     }
 }
