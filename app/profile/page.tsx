@@ -277,10 +277,11 @@ export default function Page() {
                                 <>
                                     <div className='history'>
                                         <h1>Order History</h1>
-                                        <table>
+                                        <div>
+                                            <table>
                                             <tr className='id flex justify-between'>
                                                 <th>Order ID</th>
-                                                <th>Data</th>
+                                                <th>Date</th>
                                                 <th>Total</th>
                                                 <th>Status</th>
                                                 <th></th>
@@ -351,6 +352,7 @@ export default function Page() {
                                             </tr>
 
                                         </table>
+                                        </div>
 
                                     </div>
                                 </>
