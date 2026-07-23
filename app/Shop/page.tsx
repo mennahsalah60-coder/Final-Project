@@ -31,14 +31,32 @@ export default function About() {
     useEffect(() => {
         if (!query) return;
 
-        setLoading(true);
+        const start = setTimeout(() => {
+            setLoading(true);
+        }, 0);
 
-        const timer = setTimeout(() => {
+        const stop = setTimeout(() => {
             setLoading(false);
         }, 800);
 
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(start);
+            clearTimeout(stop);
+        };
     }, [query]);
+
+    const increaseQty = (id: number) => {
+        setCart(prev => 
+            prev.map(item => 
+                item.id === id
+                ? {
+                    ...item,
+                        quantity: item.quantity > 1 ? item.quantity + 1 : 1
+                    }
+                    : item
+            )
+        )
+    }
 
     const decreaseQty = (id: number) => {
         setCart(prev =>
@@ -113,7 +131,18 @@ export default function About() {
 
 
     useEffect(() => {
-        setLoading(true);
+        const start = setTimeout(() => {
+            setLoading(true);
+        }, 0);
+
+        const stop = setTimeout(() => {
+            setLoading(false);
+        }, 800);
+
+        return () => {
+            clearTimeout(start);
+            clearTimeout(stop);
+        };
 
         fetch('/api/products')
             .then(res => res.json())
