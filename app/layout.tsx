@@ -7,7 +7,7 @@ import { CartProvider } from "./components/addToCart/Cart";
 import { AuthProvider } from "./components/navbar/AuthContext";
 import { ToastContainer } from 'react-toastify'
 import CompleteProfile from './components/AuthProvider/CompleteProfile'
-import SplashScreen from "./components/splash/splash";
+import SplashScreen from "./components/splashScreen/splash";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

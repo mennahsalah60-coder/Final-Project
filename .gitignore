@@ -20,7 +20,7 @@
 app/dist/
 app/app/components/AuthProvider/CompleteProfile/dist/
 app/app/components/addToCart/dist/
-app/app/components/splash/dist/
+app/app/components/splashScreen/dist/
 app/home/dist/
 app/Shop/dist/
 app/signin/dist/
