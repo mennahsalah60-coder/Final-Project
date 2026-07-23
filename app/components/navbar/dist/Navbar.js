@@ -24,6 +24,10 @@ function Navbar() {
     var cart = Cart_1.useCart().cart;
     var _b = AuthContext_1.useAuth(), user = _b.user, logout = _b.logout;
     var router = navigation_2.useRouter();
+    var _c = react_1.useState(""), search = _c[0], setSearch = _c[1];
+    var handleSearch = function () {
+        router.push("/Shop?q=" + search);
+    };
     var firstName = (user === null || user === void 0 ? void 0 : user.firstName) ? user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)
         : "";
     var handleLogout = function () {
@@ -63,7 +67,6 @@ function Navbar() {
                             firstName),
                         React.createElement("button", { onClick: function () {
                                 handleLogout();
-                                // alert("You have been logged out successfully")
                             } }, "Logout")))))),
         React.createElement("section", { className: 'logo-sec' },
             React.createElement("div", { className: 'countainer logo' },
@@ -81,12 +84,13 @@ function Navbar() {
                         React.createElement("p", null, "Eng"),
                         React.createElement("p", null, "USD"))),
                 React.createElement("div", { className: 'search' },
-                    React.createElement("input", { type: "text", 
-                        // value={search}
-                        // onChange={(e) => setSearch(e.target.value)}
-                        placeholder: 'Search' }),
+                    React.createElement("input", { type: "text", value: search, onChange: function (e) { return setSearch(e.target.value); }, onKeyDown: function (e) {
+                            if (e.key === 'Enter') {
+                                handleSearch();
+                            }
+                        }, placeholder: 'Search' }),
                     React.createElement("div", null,
-                        React.createElement("button", { className: '' }, "Search"))),
+                        React.createElement("button", { onClick: handleSearch, className: '' }, "Search"))),
                 React.createElement("div", { className: 'fav' },
                     React.createElement(image_1["default"], { className: 'heart', src: Heart_png_1["default"], alt: "" }),
                     "|",

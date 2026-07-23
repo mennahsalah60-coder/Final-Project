@@ -120,7 +120,7 @@ function GET() {
               "image": "/Product Image (8).png"
             }, {
               "id": 17,
-              "name": "Green Capsicum",
+              "name": "Capsicum",
               category: 'Vegetables',
               "price": 20.00,
               "sale": 0.5,

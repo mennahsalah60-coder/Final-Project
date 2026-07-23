@@ -14,7 +14,7 @@ import addToFav from '../../public/add.svg'
 import minus from '../../public/Minus.svg'
 import plus from '../../public/Plus.svg'
 import { toast } from 'react-toastify';
-
+import { useSearchParams } from "next/navigation";
 
 export default function About() {
     const [category, setCategory] = useState('');
@@ -25,15 +25,20 @@ export default function About() {
     const [fav, setFav] = useState<(Product)[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-    const increaseQty = (id: number) => {
-        setCart(prev =>
-            prev.map(item =>
-                item.id === id
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
-            )
-        );
-    };
+    const searchParams = useSearchParams();
+    const query = searchParams.get("q") || "";
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        if (!query) return;
+
+        setLoading(true);
+
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 800);
+
+        return () => clearTimeout(timer);
+    }, [query]);
 
     const decreaseQty = (id: number) => {
         setCart(prev =>
@@ -108,121 +113,156 @@ export default function About() {
 
 
     useEffect(() => {
+        setLoading(true);
+
         fetch('/api/products')
             .then(res => res.json())
             .then((data) => {
                 setFruits(data.fruits);
                 setVegetables(data.vegetables);
             })
-            .catch(err => console.error(err));
+            .catch(err => console.error(err))
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
-    // category 
-    const displayedProducts = category === 'fruits' ? fruits :
-        category === 'vegetables' ? vegetables :
-            [...fruits, ...vegetables];
 
-    // price
-    const filteredProducts = displayedProducts.filter(product => {
-        if (!price) return true;
-        if (price === "10$ - 20$") return product.price >= 10 && product.price <= 20;
-        if (price === "30$ - 40$") return product.price >= 30 && product.price <= 40;
-        return true
+    // categorys
+    const allProducts = [...fruits, ...vegetables];
+
+    // category
+    const categoryProducts =
+        category === "fruits"
+            ? fruits
+            : category === "vegetables"
+                ? vegetables
+                : allProducts;
+
+    // price and search
+    const filteredProducts = categoryProducts.filter((product) => {
+
+        const matchPrice =
+            !price ||
+            (price === "10$ - 20$" &&
+                product.price >= 10 &&
+                product.price <= 20) ||
+            (price === "30$ - 40$" &&
+                product.price >= 30 &&
+                product.price <= 40);
+
+        const matchSearch =
+            query === "" ||
+            product.name.toLowerCase().includes(query.toLowerCase());
+
+        return matchPrice && matchSearch;
     });
+
+    if (loading) {
+        return (
+            <div className="loader-container">
+                <span className="loader"></span>
+            </div>
+        );
+    }
 
     return (
         <>
-            <section className='discount'>
-                <div className='countainer count'>
-                    <h4>Best Deals</h4>
-                    <h2>Sale of the Month</h2>
-                    <div className='times flex'>
-                        <div className='timer'>
-                            <h3>{String(time.days).padStart(2, "0")}</h3>
-                            <p>:</p>
-                            <p>Days</p>
-                        </div>
-
-                        <div className='timer'>
-                            <h3>{String(time.hours).padStart(2, "0")}</h3>
-                            <p>:</p>
-                            <p>Hours</p>
-                        </div>
-
-                        <div className='timer'>
-                            <h3>{String(time.minutes).padStart(2, "0")}</h3>
-                            <p>:</p>
-                            <p>Mins</p>
-                        </div>
-
-                        <div className='time'>
-                            <h3>{String(time.seconds).padStart(2, "0")}</h3>
-                            <p>Secs</p>
-                        </div>
-                    </div>
-                    <div className='shop1'>
-                        <div className='shop'>
-                            <button
-                                onClick={() => {
-                                    const element = document.getElementById("products");
-                                    if (element) {
-                                        element.scrollIntoView({ behavior: "smooth" });
-                                    }
-                                }}
-                            > Shop Now </button>
-                            <Image src={view} alt="" />
-                        </div>
-                    </div>
-                </div>
-            </section >
-
-            <section className='filter'>
-                <div className='countainer things'>
-                    <div>
-                        <select
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                        >
-                            <option value="" disabled>Select Category</option>
-                            <option value="fruits">Fruits</option>
-                            <option value="vegetables">Vegetables</option>
-                        </select>
-                    </div>
-                    <div>
-                        <select
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
-                        >
-                            <option value="" disabled>Select Price (min - max)</option>
-                            <option value="10$ - 20$">10$ - 20$</option>
-                            <option value="30$ - 40$">30$ - 40$</option>
-                        </select>
-                    </div>
-                </div>
-
-                <section className='all-filter'>
-                    <div className='filtered countainer'>
-                        <div className='flex gap-10 done'>
-                            <h3>Active Filters: </h3>
-                            {category && (
-                                <div className='flex gap-5 name' onClick={() => setCategory('')}>
-                                    <h4>{category}</h4>
-                                    <Image src={deleted} alt="" />
+            {!query && (
+                <>
+                    <section className='discount'>
+                        <div className='countainer count'>
+                            <h4>Best Deals</h4>
+                            <h2>Sale of the Month</h2>
+                            <div className='times flex'>
+                                <div className='timer'>
+                                    <h3>{String(time.days).padStart(2, "0")}</h3>
+                                    <p>:</p>
+                                    <p>Days</p>
                                 </div>
-                            )}
-                            {price && (
-                                <div className='flex gap-5 name' onClick={() => setPrice('')}>
-                                    <h4>{price}</h4>
-                                    <Image src={deleted} alt="" />
+
+                                <div className='timer'>
+                                    <h3>{String(time.hours).padStart(2, "0")}</h3>
+                                    <p>:</p>
+                                    <p>Hours</p>
                                 </div>
-                            )}
+
+                                <div className='timer'>
+                                    <h3>{String(time.minutes).padStart(2, "0")}</h3>
+                                    <p>:</p>
+                                    <p>Mins</p>
+                                </div>
+
+                                <div className='time'>
+                                    <h3>{String(time.seconds).padStart(2, "0")}</h3>
+                                    <p>Secs</p>
+                                </div>
+                            </div>
+                            <div className='shop1'>
+                                <div className='shop'>
+                                    <button
+                                        onClick={() => {
+                                            const element = document.getElementById("products");
+                                            if (element) {
+                                                element.scrollIntoView({ behavior: "smooth" });
+                                            }
+                                        }}
+                                    > Shop Now </button>
+                                    <Image src={view} alt="" />
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h4>{filteredProducts.length} <span>Results found.</span></h4>
+                    </section >
+
+                    <section className='filter'>
+                        <div className='countainer things'>
+                            <div>
+                                <select
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
+                                >
+                                    <option value="" disabled>Select Category</option>
+                                    <option value="fruits">Fruits</option>
+                                    <option value="vegetables">Vegetables</option>
+                                </select>
+                            </div>
+                            <div>
+                                <select
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                >
+                                    <option value="" disabled>Select Price (min - max)</option>
+                                    <option value="10$ - 20$">10$ - 20$</option>
+                                    <option value="30$ - 40$">30$ - 40$</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </section>
-            </section>
+
+                        <section className='all-filter'>
+                            <div className='filtered countainer'>
+                                <div className='flex gap-10 done'>
+                                    <h3>Active Filters: </h3>
+                                    {category && (
+                                        <div className='flex gap-5 name' onClick={() => setCategory('')}>
+                                            <h4>{category}</h4>
+                                            <Image src={deleted} alt="" />
+                                        </div>
+                                    )}
+                                    {price && (
+                                        <div className='flex gap-5 name' onClick={() => setPrice('')}>
+                                            <h4>{price}</h4>
+                                            <Image src={deleted} alt="" />
+                                        </div>
+                                    )}
+                                </div>
+                                <div>
+                                    <h4>{filteredProducts.length} <span>Results found.</span></h4>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </>
+            )}
 
             <section className='pro' id='products'>
                 <div className='countainer flex'>

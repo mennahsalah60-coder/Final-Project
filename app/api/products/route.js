@@ -18,7 +18,7 @@ export async function GET() {
             { "id": 14, "name": "Red Tomato", category: 'Vegetables', "price": 9.00, "sale": 0.5, "image": "/Product Image (4).png" },
             { "id": 15, "name": "Green Cucumber", category: 'Vegetables', "price": 34.00, "sale": 0.5, "image": "/Product Image (5).png" },
             { "id": 16, "name": "Ladies Finger", category: 'Vegetables', "price": 20.00, "sale": 0.5, "image": "/Product Image (8).png" },
-            { "id": 17, "name": "Green Capsicum", category: 'Vegetables', "price": 20.00, "sale": 0.5, "image": "/Product Image (6).png" },
+            { "id": 17, "name": "Capsicum", category: 'Vegetables', "price": 20.00, "sale": 0.5, "image": "/Product Image (6).png" },
         ]
     }
 

@@ -23,6 +23,10 @@ export default function Navbar() {
     const { cart } = useCart()
     const { user, logout } = useAuth()
     const router = useRouter()
+    const [search , setSearch] = useState("")
+    const handleSearch = () => {
+        router.push(`/Shop?q=${search}`)
+    }
     const firstName =
         user?.firstName
             ? user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)
@@ -73,7 +77,6 @@ export default function Navbar() {
                                 <button
                                     onClick={() => {
                                         handleLogout()
-                                        // alert("You have been logged out successfully")
                                     }}
                                 >
                                     Logout
@@ -95,28 +98,6 @@ export default function Navbar() {
                             <Image className='burger' src={isAdd ? close : burger} alt="menu toggle" />
                         </div>
                         <ul className={`menu ${isAdd ? 'active' : ''}`}>
-                            {/* <div>
-                                {!user ? (
-                                    <>
-                                        <Link href="/signin">Log In</Link>
-                                        <p>/</p>
-                                        <Link href="/signup">Sign up</Link>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Link className='account' href="/profile">Your Account {firstName}</Link>
-                                        <button
-                                            onClick={() => {
-                                                logout()
-                                                handleLogout()
-                                                alert("You have been logged out successfully")
-                                            }}
-                                        >
-                                            Logout
-                                        </button>
-                                    </>
-                                )}
-                            </div> */}
                             <Link href='/home' className={pathname === "/" ? "active" : ""}>Home</Link>
                             <Link href="/Shop" className={pathname === "/Shop" ? "active" : ""}>Shop</Link>
                             <Link href='/blog' className={pathname === "/blog" ? "active" : ""}>Blog</Link>
@@ -128,17 +109,16 @@ export default function Navbar() {
                     </div>
                     <div className='search'>
                         <input type="text"
-                            // value={search}
-                            // onChange={(e) => setSearch(e.target.value)}
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    handleSearch();
+                                }
+                            }}
                             placeholder='Search' />
-                        {/* {loading && <p>Loading...</p>} */}
-                        {/* <ul>
-                            {result.map((item) => (
-                                <li key={item.id}>{item.name}</li>
-                            ))}
-                        </ul> */}
                         <div>
-                            <button className=''>Search</button>
+                            <button onClick={handleSearch} className=''>Search</button>
                         </div>
                     </div>
                     <div className='fav'>
