@@ -279,7 +279,7 @@ export default function Page() {
                                         <h1>Order History</h1>
                                         <div>
                                             <table>
-                                            <tr className='id flex justify-between'>
+                                            <tr className='oneId flex justify-between'>
                                                 <th>Order ID</th>
                                                 <th>Date</th>
                                                 <th>Total</th>

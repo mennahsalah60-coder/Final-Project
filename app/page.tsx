@@ -29,7 +29,6 @@ import Swal from 'sweetalert2'
 
 
 import { useRouter } from "next/navigation";
-// import { useSearch } from './components/navbar/searchContext';
 
 export default function Hero() {
     const [fruits, setFruits] = useState<Fruit[]>([]);
@@ -38,7 +37,6 @@ export default function Hero() {
     const notify_2 = () => {
         toast.success('Product added to cart');
     };
-    // const {result, loading} = useSearch()
 
     type Product = {
         id: number;
@@ -168,7 +166,6 @@ export default function Hero() {
     const handleAddToCart = (productCart: Product) => {
         const token = localStorage.getItem("token");
         if (!token) {
-            // notify()
             Swal.fire({
                 text: "Please sign up to add items to your cart",
                 icon: 'warning',
@@ -192,7 +189,6 @@ export default function Hero() {
 
     };
 
-    // if (loading) return <p>loading...</p>;
 
     return (
         <>
@@ -278,13 +274,7 @@ export default function Hero() {
                             <Image src={view} alt='' />
                         </Link>
                     </div>
-                    {/* <ul>
-                        {Array.isArray(result) && result.map((item) => (
-                            <li key={item.id}>
-                                {item.name}
-                            </li>
-                        ))}
-                    </ul> */}
+                    
                     <div className='products'>
                         {fruits.map((item) => {
                             return (
