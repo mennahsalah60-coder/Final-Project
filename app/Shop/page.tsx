@@ -29,28 +29,26 @@ export default function About() {
     const query = searchParams.get("q") || "";
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        if (!query) return;
+        setLoading(true);
 
-        const start = setTimeout(() => {
-            setLoading(true);
-        }, 0);
-
-        const stop = setTimeout(() => {
-            setLoading(false);
-        }, 800);
-
-        return () => {
-            clearTimeout(start);
-            clearTimeout(stop);
-        };
-    }, [query]);
+        fetch('/api/products')
+            .then(res => res.json())
+            .then((data) => {
+                setFruits(data.fruits);
+                setVegetables(data.vegetables);
+            })
+            .catch(err => console.error(err))
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
 
     const increaseQty = (id: number) => {
-        setCart(prev => 
-            prev.map(item => 
+        setCart(prev =>
+            prev.map(item =>
                 item.id === id
-                ? {
-                    ...item,
+                    ? {
+                        ...item,
                         quantity: item.quantity > 1 ? item.quantity + 1 : 1
                     }
                     : item

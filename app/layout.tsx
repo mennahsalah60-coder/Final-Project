@@ -7,7 +7,7 @@ import { CartProvider } from "./components/addToCart/Cart";
 import { AuthProvider } from "./components/navbar/AuthContext";
 import { ToastContainer } from 'react-toastify'
 import CompleteProfile from './components/AuthProvider/CompleteProfile'
-
+import SplashScreen from "./components/splash/splash";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,18 +32,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
+        <SplashScreen>
+          <AuthProvider>
+            <CartProvider>
 
-        <AuthProvider>
-          <CartProvider>
+              <Navbar />
+              <CompleteProfile />
+              {children}
+              <ToastContainer />
+              <Footer />
 
-            <Navbar />
-            <CompleteProfile />
-            {children}
-            <ToastContainer />
-            <Footer />
-
-          </CartProvider>
-        </AuthProvider>
+            </CartProvider>
+          </AuthProvider>
+        </SplashScreen>
       </body>
     </html>
   );

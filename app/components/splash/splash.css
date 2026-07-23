@@ -1,0 +1,36 @@
+.splash{
+    position: fixed;
+    inset: 0;
+    background: rgb(227, 234, 227);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+
+    transform: translateY(0);
+    transition: transform .8s ease-in-out;
+}
+
+.splash.hide{
+    transform: translateY(-100%);
+}
+
+.splash img{
+    color: #00B207;
+    min-width: 300px;
+    animation: zoom 1s infinite alternate;
+}
+
+.move {
+    animation: zoom 1s infinite alternate;
+
+}
+@keyframes zoom{
+    from{
+        transform: scale(1);
+    }
+
+    to{
+        transform: scale(1.08);
+    }
+}
