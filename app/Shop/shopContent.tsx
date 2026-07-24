@@ -44,17 +44,18 @@ export default function About() {
     }, []);
 
     const increaseQty = (id: number) => {
-        setCart(prev =>
-            prev.map(item =>
+        setCart(prev => {
+            const updated = prev.map(item =>
                 item.id === id
                     ? {
                         ...item,
-                        quantity: item.quantity > 1 ? item.quantity + 1 : 1
+                        quantity: (item.quantity ?? 1) + 1,
                     }
                     : item
-            )
-        )
-    }
+            );
+            return updated;
+        });
+    };
 
     const decreaseQty = (id: number) => {
         setCart(prev =>
