@@ -139,7 +139,66 @@
         }
 
         .history {
-            border: 1px solid rgb(205, 202, 202);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+            width: 100%;
+        }
+
+        .history h1 {
+            padding: 20px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .history table {
+            width: 100%;
+            min-width: 900px;
+            border-collapse: collapse;
+        }
+
+        .history thead {
+            background: #f5f5f5;
+        }
+
+        .history th,
+        .history td {
+            padding: 18px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e5;
+            white-space: nowrap;
+        }
+
+        .history th {
+            color: #555;
+            font-weight: 700;
+            font-size: 16px;
+            padding-left: 50px !important;
+        }
+
+        .history td {
+            font-size: 15px;
+            color: #333;
+        }
+
+        .history tbody tr:hover {
+            background: #fafafa;
+        }
+
+        .history a {
+            color: #00B207;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+
+        .history a:hover {
+            text-decoration: underline;
         }
 
         .settings {
@@ -412,7 +471,6 @@
 
             div {
                 overflow-x: auto;
-
             }
 
             table {
@@ -506,20 +564,20 @@
 
 @media screen and (min-width: 568px) {
 
-    .allProfile {
-        display: flex;
-        flex-direction: row;
-    }
-
     .profile {
 
         .left {
             margin-left: 30px;
         }
 
+        .details{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-left: -40px !important;
+        }
         .history {
 
-            div{
+            div {
                 overflow-x: auto;
             }
 
@@ -544,6 +602,15 @@
 }
 
 @media screen and (min-width: 1024px) {
+    .allProfile {
+        display: flex;
+        flex-direction: row;
+
+        .details{
+            margin-left: 20px !important;
+        }
+    }
+
 
     .profile {
         .details {
@@ -557,20 +624,13 @@
             width: 40%;
         }
 
-        .history {
-            font-size: 14px;
+        .history table {
+            min-width: 100% !important;
+        }
 
-            table {
-                tr {
-                    td {
-                        padding: 0;
-                    }
-
-                    th {
-                        padding-right: 80px;
-                    }
-                }
-            }
+        .history th,
+        .history td {
+            padding: 30px;
         }
 
         .left .hereTwo {
@@ -659,17 +719,16 @@
                 font-size: 18px;
 
                 table {
-                    /* width: 100%; */
                     min-width: 1000px;
 
                     tr {
 
                         th {
-                            width: 100%;
+                            padding: 20px 0px;
                         }
 
                         td {
-                            padding-left: 20px;
+                            padding: 20px 20px 20px 50px;
                         }
                     }
                 }
