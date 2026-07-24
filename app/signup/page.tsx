@@ -47,7 +47,7 @@ export default function Page() {
                 login(result.user);
 
                 toast.success("Account created successfully!", {
-                    onClose: () => router.push("/home"),
+                    onClose: () => router.push("/"),
                 });
 
                 resetForm();

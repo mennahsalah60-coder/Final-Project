@@ -28,10 +28,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         const auth = localStorage.getItem("auth");
-        const profile = localStorage.getItem("profile");
 
         if (auth) {
             const authData = JSON.parse(auth);
+
+            const profile = localStorage.getItem(`profile_${authData.uid}`);
+
             const profileData = profile ? JSON.parse(profile) : {};
 
             setUser({
@@ -44,7 +46,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     const login = (data: User) => {
-        const savedProfile = JSON.parse(localStorage.getItem("profile") || "{}");
+        const savedProfile = JSON.parse(
+            localStorage.getItem(`profile_${data.uid}`) || "{}"
+        );
 
         const authData = {
             uid: data.uid,
@@ -59,7 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(mergedUser);
 
         localStorage.setItem("auth", JSON.stringify(authData));
-        localStorage.setItem("profile", JSON.stringify(mergedUser));
+        localStorage.setItem(`profile_${data.uid}`, JSON.stringify(mergedUser));
         localStorage.setItem("isLoggedIn", "true");
     };
 
@@ -85,7 +89,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 Address: updated.Address,
             };
 
-            localStorage.setItem("profile", JSON.stringify(profileData));
+            localStorage.setItem(
+                `profile_${updated.uid}`,
+                JSON.stringify(profileData)
+            );
 
             return updated;
         });

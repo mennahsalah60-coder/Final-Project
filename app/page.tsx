@@ -274,7 +274,7 @@ export default function Hero() {
                             <Image src={view} alt='' />
                         </Link>
                     </div>
-                    
+        
                     <div className='products'>
                         {fruits.map((item) => {
                             return (
@@ -330,13 +330,6 @@ export default function Hero() {
                                         <div>
                                             <button
                                                 className={`add-to-cart cursor-pointer ${cart.some(p => p.id === item.id) ? 'added' : ''}`}
-                                                // onClick={() => {
-                                                //     if (cart.some(p => p.id === item.id)) {
-                                                //         setCart(prev => prev.filter(p => p.id !== item.id));
-                                                //     } else {
-                                                //         setCart(prev => [...prev, item]);
-                                                //     }
-                                                // }}
                                                 onClick={() => {
                                                     handleAddToCart(item)
                                                     setCart(prev => [...prev, { ...item, quantity: 1 }]);

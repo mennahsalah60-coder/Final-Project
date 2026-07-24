@@ -21,16 +21,16 @@ function AuthProvider(_a) {
     var _c = react_1.useState(true), loading = _c[0], setLoading = _c[1];
     react_1.useEffect(function () {
         var auth = localStorage.getItem("auth");
-        var profile = localStorage.getItem("profile");
         if (auth) {
             var authData = JSON.parse(auth);
+            var profile = localStorage.getItem("profile_" + authData.uid);
             var profileData = profile ? JSON.parse(profile) : {};
             setUser(__assign(__assign({}, authData), profileData));
         }
         setLoading(false);
     }, []);
     var login = function (data) {
-        var savedProfile = JSON.parse(localStorage.getItem("profile") || "{}");
+        var savedProfile = JSON.parse(localStorage.getItem("profile_" + data.uid) || "{}");
         var authData = {
             uid: data.uid,
             email: data.email
@@ -38,7 +38,7 @@ function AuthProvider(_a) {
         var mergedUser = __assign(__assign({}, savedProfile), data);
         setUser(mergedUser);
         localStorage.setItem("auth", JSON.stringify(authData));
-        localStorage.setItem("profile", JSON.stringify(mergedUser));
+        localStorage.setItem("profile_" + data.uid, JSON.stringify(mergedUser));
         localStorage.setItem("isLoggedIn", "true");
     };
     var logout = function () {
@@ -58,7 +58,7 @@ function AuthProvider(_a) {
                 Company: updated.Company,
                 Address: updated.Address
             };
-            localStorage.setItem("profile", JSON.stringify(profileData));
+            localStorage.setItem("profile_" + updated.uid, JSON.stringify(profileData));
             return updated;
         });
     };

@@ -98,7 +98,7 @@ export default function Navbar() {
                             <Image className='burger' src={isAdd ? close : burger} alt="menu toggle" />
                         </div>
                         <ul className={`menu ${isAdd ? 'active' : ''}`}>
-                            <Link href='/home' className={pathname === "/" ? "active" : ""}>Home</Link>
+                            <Link href='/' className={pathname === "/" ? "active" : ""}>Home</Link>
                             <Link href="/Shop" className={pathname === "/Shop" ? "active" : ""}>Shop</Link>
                             <Link href='/blog' className={pathname === "/blog" ? "active" : ""}>Blog</Link>
                             <Link href='/about' className={pathname === "/about" ? "active" : ""}>About Us</Link>
@@ -138,7 +138,7 @@ export default function Navbar() {
             <nav>
                 <div className='navbar countainer'>
                     <div className='links'>
-                        <Link href='/home' className={pathname === "/home" ? "active" : ""}>Home</Link>
+                        <Link href='/' className={pathname === "/" ? "active" : ""}>Home</Link>
                         <Link href="/Shop" className={pathname === "/Shop" ? "active" : ""}>Shop</Link>
                         <Link href='/blog' className={pathname === "/blog" ? "active" : ""}>Blog</Link>
                         <Link href='/about' className={pathname === "/about" ? "active" : ""}>About Us</Link>

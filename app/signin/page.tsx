@@ -57,7 +57,7 @@ export default function Page() {
                 
 
                 toast.success("Logged in successfully!", {
-                    onClose: () => router.push("/home"),
+                    onClose: () => router.push("/"),
                 });
 
                 resetForm();
